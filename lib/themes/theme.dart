@@ -179,8 +179,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline4: TextStyle(
           fontSize: 18.sp,
-          color: kLightTextColor,
-          fontWeight: FontWeight.bold,
+          color: kMediumTextColor,
+          fontWeight: FontWeight.w700,
         ),
         headline5: TextStyle(
           fontSize: 14.sp,
@@ -188,8 +188,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
           fontWeight: FontWeight.bold,
         ),
         headline6: TextStyle(
-          fontSize: 8.sp,
-          color: kLightTextColor,
+          fontSize: 12.sp,
+          color: kLightSmallTextColor,
         ),
         bodyText1: TextStyle(
           fontSize: 12.sp,
