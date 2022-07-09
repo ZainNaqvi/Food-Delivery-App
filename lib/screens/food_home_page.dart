@@ -13,10 +13,15 @@ class FoodHomePage extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Text("Pakistan"),
+                    Text(
+                      "Pakistan",
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
                     Row(
                       children: [
-                        Text("Wah Cantt"),
+                        Text(
+                          "Wah Cantt",
+                        ),
                         Icon(Icons.arrow_drop_down),
                       ],
                     ),

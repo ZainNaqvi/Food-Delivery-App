@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/screens/food_home_page.dart';
+import 'package:food_delivery_application/themes/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,13 +19,13 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          themeMode: ThemeMode.system,
+          darkTheme: appThemeData[AppTheme.Dark],
+          theme: appThemeData[AppTheme.Light],
           debugShowCheckedModeBanner: false,
           title: 'Food Delivery Application || Flutter Firebase || Flutter',
           // You can use the library anywhere in the app even in theme
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          ),
+
           home: child,
         );
       },
