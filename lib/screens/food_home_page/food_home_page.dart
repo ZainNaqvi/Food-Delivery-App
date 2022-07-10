@@ -11,7 +11,25 @@ class FoodHomePage extends StatefulWidget {
 }
 
 class _FoodHomePageState extends State<FoodHomePage> {
-  PageController _controller = PageController(viewportFraction: 0.85);
+  PageController _pageController = PageController(viewportFraction: 0.85);
+  var _currentPageValue = 0.0;
+  double _scaleFactor = 0.8;
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPageValue = _pageController.page!;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +47,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                 height: 280.h,
                 width: double.infinity,
                 child: PageView.builder(
-                  controller: _controller,
+                  controller: _pageController,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int itemIndex) {
                     return _buildStakeContainer(itemIndex);
@@ -44,99 +62,152 @@ class _FoodHomePageState extends State<FoodHomePage> {
   }
 
   Widget _buildStakeContainer(int itemIndex) {
-    return Stack(
-      children: [
-        Container(
-          height: 220.h,
-          margin: EdgeInsets.only(right: 16.w),
-          decoration: BoxDecoration(
-            color: itemIndex.isEven ? Colors.teal : Colors.amber,
-            borderRadius: BorderRadius.circular(14.r),
-            image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/home_food_1.jpg')),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 80.h,
-            margin: EdgeInsets.only(left: 30.w, right: 30.w, bottom: 10.h),
+    Matrix4 matrix4 = Matrix4.identity();
+    if (itemIndex == _currentPageValue.floor()) {
+      var currentScale =
+          1 - (_currentPageValue - itemIndex) * (1 - _scaleFactor);
+      var currentTransform = 220.h * (1 - currentScale) / 2;
+      matrix4 = Matrix4.diagonal3Values(1, currentScale, 1)
+        ..setTranslationRaw(0, currentTransform, 0);
+    } else if (itemIndex == _currentPageValue.floor() + 1) {
+      var currentScale = _scaleFactor +
+          (_currentPageValue - itemIndex + 1) * (1 - _scaleFactor);
+      var currentTransform = 220.h * (1 - currentScale) / 2;
+      matrix4 = Matrix4.diagonal3Values(1, currentScale, 1)
+        ..setTranslationRaw(0, currentTransform, 0);
+    } else if (itemIndex == _currentPageValue.floor() - 1) {
+      var currentScale =
+          1 - (_currentPageValue - itemIndex) * (1 - _scaleFactor);
+      var currentTransform = 220.h * (1 - currentScale) / 2;
+      matrix4 = Matrix4.diagonal3Values(1, currentScale, 1)
+        ..setTranslationRaw(0, currentTransform, 0);
+    } else {
+      var currentScale = 0.8;
+      matrix4 = Matrix4.diagonal3Values(1, currentScale, 1)
+        ..setTranslationRaw(0, 220.h * (1 - _scaleFactor) / 2, 1);
+    }
+    return Transform(
+      transform: matrix4,
+      child: Stack(
+        children: [
+          Container(
+            height: 220.h,
+            margin: EdgeInsets.only(right: 16.w),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: itemIndex.isEven ? Colors.teal : Colors.amber,
               borderRadius: BorderRadius.circular(14.r),
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/home_food_1.jpg')),
             ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
             child: Container(
-              padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 8.h),
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Chees Side",
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                  Row(
-                    children: [
-                      Wrap(
-                        children: List.generate(
-                          5,
-                          (index) => Icon(
-                            Icons.star,
-                            color: Colors.teal,
-                            size: 16,
+              height: 100.h,
+              margin: EdgeInsets.only(
+                left: 30.w,
+                right: 30.w,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14.r),
+              ),
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: 12.w, right: 12.w, top: 8.h, bottom: 8.h),
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Chees Side",
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    Row(
+                      children: [
+                        Wrap(
+                          children: List.generate(
+                            5,
+                            (index) => Icon(
+                              Icons.star,
+                              color: Colors.teal,
+                              size: 16,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 6.w,
-                      ),
-                      Text(
-                        "4.5",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      SizedBox(
-                        width: 6.w,
-                      ),
-                      Text(
-                        "1232",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      SizedBox(
-                        width: 6.w,
-                      ),
-                      Text(
-                        "Comments",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 18.w,
-                        height: 18.h,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.orangeAccent,
+                        SizedBox(
+                          width: 6.w,
                         ),
-                      ),
-                      SizedBox(
-                        width: 12.w,
-                      ),
-                      Text(
-                        "Normal",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
-                  ),
-                ],
+                        Text(
+                          "4.5",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        SizedBox(
+                          width: 6.w,
+                        ),
+                        Text(
+                          "1232",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                        SizedBox(
+                          width: 6.w,
+                        ),
+                        Text(
+                          "Comments",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 12.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        IconAndTextWidget(
+                          title: "Normal",
+                          iconData: Icons.circle_sharp,
+                          iconColor: Colors.orangeAccent,
+                        ),
+                        IconAndTextWidget(
+                          title: "1.2 km",
+                          iconData: Icons.location_on,
+                          iconColor: Colors.teal,
+                        ),
+                        IconAndTextWidget(
+                          title: "Normal",
+                          iconData: Icons.lock_clock,
+                          iconColor: Colors.redAccent,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget IconAndTextWidget(
+      {required IconData? iconData,
+      required String title,
+      required Color iconColor}) {
+    return Row(
+      children: [
+        Icon(
+          iconData,
+          color: iconColor,
+        ),
+        SizedBox(
+          width: 5.w,
+        ),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headline6,
         ),
       ],
     );
