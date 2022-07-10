@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/constants.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
+import 'components/footerCard.dart';
 
 class FoodHomePage extends StatefulWidget {
   const FoodHomePage({Key? key}) : super(key: key);
@@ -178,26 +176,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
                     SizedBox(
                       height: 12.h,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        IconAndTextWidget(
-                          title: "Normal",
-                          iconData: Icons.circle_sharp,
-                          iconColor: Colors.orangeAccent,
-                        ),
-                        IconAndTextWidget(
-                          title: "1.2 km",
-                          iconData: Icons.location_on,
-                          iconColor: Colors.teal,
-                        ),
-                        IconAndTextWidget(
-                          title: "Normal",
-                          iconData: Icons.lock_clock,
-                          iconColor: Colors.redAccent,
-                        ),
-                      ],
-                    ),
+                    // botton of the custom page view builder card
+                    bottomOfCard(context),
                   ],
                 ),
               ),
@@ -205,27 +185,6 @@ class _FoodHomePageState extends State<FoodHomePage> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget IconAndTextWidget(
-      {required IconData? iconData,
-      required String title,
-      required Color iconColor}) {
-    return Row(
-      children: [
-        Icon(
-          iconData,
-          color: iconColor,
-        ),
-        SizedBox(
-          width: 5.w,
-        ),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.headline6,
-        ),
-      ],
     );
   }
 }
