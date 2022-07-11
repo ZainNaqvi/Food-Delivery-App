@@ -4,7 +4,7 @@ import 'iconandtext.dart';
 
 Row bottomOfCard(BuildContext context) {
   return Row(
-    mainAxisAlignment: MainAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       IconAndTextWidget(
         context: context,

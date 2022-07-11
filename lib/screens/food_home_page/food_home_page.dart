@@ -1,7 +1,10 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
+import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
+import 'components/productText.dart';
 
 class FoodHomePage extends StatefulWidget {
   const FoodHomePage({Key? key}) : super(key: key);
@@ -35,27 +38,102 @@ class _FoodHomePageState extends State<FoodHomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              // food Home screen header
-              header(context),
-              // End of the food Home screen header
+        child: Column(
+          children: [
+            // food Home screen header
+            header(context),
+            // End of the food Home screen header
 
-              // starting of the page view builder
-              SizedBox(
-                height: 280.h,
-                width: double.infinity,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int itemIndex) {
-                    return _buildStakeContainer(itemIndex);
-                  },
+            // starting of the page view builder
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 280.h,
+                      width: double.infinity,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: 5,
+                        itemBuilder: (BuildContext context, int itemIndex) {
+                          return _buildStakeContainer(itemIndex);
+                        },
+                      ),
+                    ),
+                    // dot indicator
+                    dotIndicator(currentPageValue: _currentPageValue),
+                    // Popular product text
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        children: [
+                          productText(context),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          // Popular product list view builder
+                          SizedBox(
+                            height: 900.h,
+                            child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: 12,
+                                // shrinkWrap: true,
+                                itemBuilder: (context, index) => Container(
+                                      child: Row(children: [
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                            bottom: 8.h,
+                                          ),
+                                          width: 100.w,
+                                          height: 100.h,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.r),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                  "assets/images/home_food_4.jpg",
+                                                )),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10.r),
+                                                bottomRight:
+                                                    Radius.circular(10.r),
+                                              ),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  "Nutirtual Free Food Deal with The Good and well taste",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                Text(
+                                                  "Nutirtual Free Food Deal with The Good and well taste",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                bottomOfCard(context),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                    )),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -94,7 +172,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
             height: 220.h,
             margin: EdgeInsets.only(right: 16.w),
             decoration: BoxDecoration(
-              color: itemIndex.isEven ? Colors.teal : Colors.amber,
+              // color: itemIndex.isEven ? Colors.teal : Colors.amber,
               borderRadius: BorderRadius.circular(14.r),
               image: DecorationImage(
                   fit: BoxFit.cover,
@@ -104,10 +182,10 @@ class _FoodHomePageState extends State<FoodHomePage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 100.h,
+              height: 95.h,
               margin: EdgeInsets.only(
-                left: 30.w,
-                right: 40.w,
+                left: 25.w,
+                right: 35.w,
               ),
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -129,7 +207,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                   ]),
               child: Container(
                 padding: EdgeInsets.only(
-                    left: 12.w, right: 12.w, top: 8.h, bottom: 8.h),
+                    left: 12.w, right: 12.w, top: 10.h, bottom: 0),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +216,11 @@ class _FoodHomePageState extends State<FoodHomePage> {
                       "Chees Side",
                       style: Theme.of(context).textTheme.headline4,
                     ),
+                    SizedBox(
+                      height: 4.h,
+                    ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Wrap(
                           children: List.generate(
@@ -174,10 +256,12 @@ class _FoodHomePageState extends State<FoodHomePage> {
                       ],
                     ),
                     SizedBox(
-                      height: 12.h,
+                      height: 6.h,
                     ),
                     // botton of the custom page view builder card
                     bottomOfCard(context),
+
+                    // dot indicator here
                   ],
                 ),
               ),
