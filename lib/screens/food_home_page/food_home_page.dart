@@ -107,7 +107,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
               height: 100.h,
               margin: EdgeInsets.only(
                 left: 30.w,
-                right: 30.w,
+                right: 40.w,
               ),
               decoration: BoxDecoration(
                   color: Colors.white,
