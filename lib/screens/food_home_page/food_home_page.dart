@@ -84,15 +84,15 @@ class _FoodHomePageState extends State<FoodHomePage> {
                                           margin: EdgeInsets.only(
                                             bottom: 8.h,
                                           ),
-                                          width: 100.w,
-                                          height: 100.h,
+                                          width: 100,
+                                          height: 100,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(10.r),
+                                                BorderRadius.circular(14.r),
                                             image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                  "assets/images/home_food_4.jpg",
+                                                  "assets/images/home_food_2.jpg",
                                                 )),
                                           ),
                                         ),
@@ -106,20 +106,39 @@ class _FoodHomePageState extends State<FoodHomePage> {
                                                     Radius.circular(10.r),
                                               ),
                                             ),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "Nutirtual Free Food Deal with The Good and well taste",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                Text(
-                                                  "Nutirtual Free Food Deal with The Good and well taste",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                bottomOfCard(context),
-                                              ],
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 6.0,
+                                                  vertical: 4.h),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Nutirtual Free Food Deal with The Good and well taste",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline5,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6.h,
+                                                  ),
+                                                  Text(
+                                                    "Nutirtual Free Food Deal with The Good and well taste",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6.h,
+                                                  ),
+                                                  bottomOfCard(context),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
