@@ -1,4 +1,3 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
@@ -69,7 +68,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                         children: [
                           productText(context),
                           SizedBox(
-                            height: 16.h,
+                            height: 22.h,
                           ),
                           // Popular product list view builder
                           SizedBox(
@@ -97,47 +96,50 @@ class _FoodHomePageState extends State<FoodHomePage> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.only(
-                                                topRight: Radius.circular(10.r),
-                                                bottomRight:
-                                                    Radius.circular(10.r),
+                                          child: Center(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                  topRight:
+                                                      Radius.circular(10.r),
+                                                  bottomRight:
+                                                      Radius.circular(10.r),
+                                                ),
                                               ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 6.0,
-                                                  vertical: 4.h),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Nutirtual Free Food Deal with The Good and well taste",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline5,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6.h,
-                                                  ),
-                                                  Text(
-                                                    "Nutirtual Free Food Deal with The Good and well taste",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline6,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6.h,
-                                                  ),
-                                                  bottomOfCard(context),
-                                                ],
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 6.0,
+                                                    vertical: 4.h),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Nutirtual Free Food Deal with The Good and well taste",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline5,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 6.h,
+                                                    ),
+                                                    Text(
+                                                      "Nutirtual Free Food Deal with The Good and well taste",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .headline6,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 6.h,
+                                                    ),
+                                                    bottomOfCard(context),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
