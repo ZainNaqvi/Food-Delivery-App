@@ -40,6 +40,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
     canvasColor: kDarkBackground,
     cardColor: kDarkCardColor,
     primaryColor: kDarkPrimary,
+    buttonColor: kDarkCardColor,
     accentColor: Colors.black,
     scaffoldBackgroundColor: kDarkBackground,
     backgroundColor: kDarkPlaceholder,
@@ -64,18 +65,17 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline4: TextStyle(
           fontSize: 22.sp,
-          color: kDarkTextColor,
+          color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
         headline5: TextStyle(
           fontSize: 16.sp,
-          color: kDarkTextColor,
+          color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
         headline6: TextStyle(
           fontSize: 12.sp,
-          color: kDarkTextColor,
-          height: 2.5,
+          color: Colors.white,
         ),
         bodyText1: TextStyle(
           fontSize: 14.sp,
@@ -159,7 +159,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
         vertical: 20.h,
       ),
     ),
-    cardColor: Colors.grey[300],
+    cardColor: Colors.white,
+    buttonColor: Colors.grey[300],
     accentColor: Colors.black,
     primaryColor: kLightPrimary,
     scaffoldBackgroundColor: kLightBackground,
@@ -190,13 +191,12 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline5: TextStyle(
           fontSize: 16.sp,
-          color: Colors.white,
+          color: Colors.black,
           fontWeight: FontWeight.w500,
         ),
         headline6: TextStyle(
-          fontSize: 16.sp,
+          fontSize: 12.sp,
           color: kLightSmallTextColor,
-          height: 2.5,
         ),
         bodyText1: TextStyle(
           fontSize: 14.sp,

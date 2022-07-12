@@ -11,10 +11,6 @@ const Color kLightError = Color(0xFFFF7971);
 const Color kLightSmallTextColor = Colors.grey;
 const Color kMediumTextColor = Colors.black;
 
-// primary color of the aplication in nsdd
-// const Color kPrimaryColor = Color(0xFF8B010B);
-// k dark themes colors
-
 const Color kDarkPrimary = Color(0xFF4CC49B);
 const Color kDarkAccent = Color(0xFF4CC49B);
 const Color kDarkTextColor = Colors.white;

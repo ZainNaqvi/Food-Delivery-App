@@ -99,7 +99,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
                                           child: Center(
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color:
+                                                    Theme.of(context).cardColor,
                                                 borderRadius: BorderRadius.only(
                                                   topRight:
                                                       Radius.circular(10.r),
@@ -190,7 +191,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
       child: Stack(
         children: [
           Container(
-            height: 220.h,
+            height: 230.h,
             margin: EdgeInsets.only(right: 16.w),
             decoration: BoxDecoration(
               // color: itemIndex.isEven ? Colors.teal : Colors.amber,
@@ -209,20 +210,20 @@ class _FoodHomePageState extends State<FoodHomePage> {
                 right: 35.w,
               ),
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20.r),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(0xffe8e8e8),
+                      color: Theme.of(context).cardColor,
                       blurRadius: 10.0,
                       offset: Offset(0, 5),
                     ),
                     BoxShadow(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       offset: Offset(-5, 0),
                     ),
                     BoxShadow(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       offset: Offset(5, 0),
                     ),
                   ]),

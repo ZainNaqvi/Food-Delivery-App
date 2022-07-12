@@ -162,7 +162,7 @@ class PopularProductPage extends StatelessWidget {
         width: double.maxFinite,
         height: 90.h,
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).buttonColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40.r),
             topRight: Radius.circular(40.r),
@@ -208,7 +208,10 @@ class PopularProductPage extends StatelessWidget {
               child: Text(
                 "\$6786 Add To Cart",
                 maxLines: 1,
-                style: Theme.of(context).textTheme.headline5,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14.sp,
+                ),
               ),
             ),
           ],
