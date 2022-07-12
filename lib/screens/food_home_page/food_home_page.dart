@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
+import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
 import 'components/productText.dart';
@@ -46,36 +47,42 @@ class _FoodHomePageState extends State<FoodHomePage> {
             // starting of the page view builder
             Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 280.h,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int itemIndex) {
-                          return _buildStakeContainer(itemIndex);
-                        },
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PopularProductPage()));
+                  },
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 280.h,
+                        width: double.infinity,
+                        child: PageView.builder(
+                          controller: _pageController,
+                          itemCount: 5,
+                          itemBuilder: (BuildContext context, int itemIndex) {
+                            return _buildStakeContainer(itemIndex);
+                          },
+                        ),
                       ),
-                    ),
-                    // dot indicator
-                    dotIndicator(currentPageValue: _currentPageValue),
-                    // Popular product text
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Column(
-                        children: [
-                          productText(context),
-                          SizedBox(
-                            height: 22.h,
-                          ),
-                          // Popular product list view builder
-                          productList()
-                        ],
+                      // dot indicator
+                      dotIndicator(currentPageValue: _currentPageValue),
+                      // Popular product text
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Column(
+                          children: [
+                            productText(context),
+                            SizedBox(
+                              height: 22.h,
+                            ),
+                            // Popular product list view builder
+                            productList()
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -87,82 +94,70 @@ class _FoodHomePageState extends State<FoodHomePage> {
 
   SizedBox productList() {
     return SizedBox(
-                          height: 900.h,
-                          child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 12,
-                              // shrinkWrap: true,
-                              itemBuilder: (context, index) => Container(
-                                    child: Row(children: [
-                                      Container(
-                                        margin: EdgeInsets.only(
-                                          bottom: 8.h,
-                                        ),
-                                        width: 100,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(14.r),
-                                          image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: AssetImage(
-                                                "assets/images/home_food_2.jpg",
-                                              )),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Center(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  Theme.of(context).cardColor,
-                                              borderRadius: BorderRadius.only(
-                                                topRight:
-                                                    Radius.circular(10.r),
-                                                bottomRight:
-                                                    Radius.circular(10.r),
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 6.0,
-                                                  vertical: 4.h),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Nutirtual Free Food Deal with The Good and well taste",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline5,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6.h,
-                                                  ),
-                                                  Text(
-                                                    "Nutirtual Free Food Deal with The Good and well taste",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline6,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6.h,
-                                                  ),
-                                                  bottomOfCard(context),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                                  )),
-                        );
+      height: 900.h,
+      child: ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: 12,
+          // shrinkWrap: true,
+          itemBuilder: (context, index) => Container(
+                child: Row(children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      bottom: 8.h,
+                    ),
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14.r),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            "assets/images/home_food_2.jpg",
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 6.0, vertical: 4.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Nutirtual Free Food Deal with The Good and well taste",
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.headline5,
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              Text(
+                                "Nutirtual Free Food Deal with The Good and well taste",
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              SizedBox(
+                                height: 6.h,
+                              ),
+                              bottomOfCard(context),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ]),
+              )),
+    );
   }
 
   Widget _buildStakeContainer(int itemIndex) {
