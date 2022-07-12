@@ -37,8 +37,10 @@ final Map<AppTheme, ThemeData> appThemeData = {
         color: Colors.black,
       ),
     ),
-    cardColor: kDarkTextColor,
+    canvasColor: kDarkBackground,
+    cardColor: kDarkCardColor,
     primaryColor: kDarkPrimary,
+    accentColor: Colors.black,
     scaffoldBackgroundColor: kDarkBackground,
     backgroundColor: kDarkPlaceholder,
     errorColor: kDarkError,
@@ -57,34 +59,37 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline3: TextStyle(
           fontSize: 22.sp,
-          color: kDarkTextColor,
+          color: Color(0xFF191923),
           fontWeight: FontWeight.bold,
         ),
         headline4: TextStyle(
-          fontSize: 18.sp,
+          fontSize: 22.sp,
           color: kDarkTextColor,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
         headline5: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 16.sp,
           color: kDarkTextColor,
+          fontWeight: FontWeight.w500,
         ),
         headline6: TextStyle(
-          fontSize: 8.sp,
+          fontSize: 12.sp,
           color: kDarkTextColor,
+          height: 2.5,
         ),
         bodyText1: TextStyle(
-          fontSize: 12.sp,
+          fontSize: 14.sp,
           color: Colors.white,
         ),
         bodyText2: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           color: kDarkTextColor,
+          height: 2.5,
         ),
         subtitle1: TextStyle(
-          color: kLightTextColor,
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w500,
+          fontSize: 16.sp,
+          color: kDarkTextColor,
+          height: 2.5,
         ),
         subtitle2: TextStyle(
           color: kLightTextColor,
@@ -154,7 +159,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
         vertical: 20.h,
       ),
     ),
-    cardColor: kDarkPlaceholder,
+    cardColor: Colors.grey[300],
+    accentColor: Colors.black,
     primaryColor: kLightPrimary,
     scaffoldBackgroundColor: kLightBackground,
     backgroundColor: kLightPlaceholder,
@@ -174,7 +180,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline3: TextStyle(
           fontSize: 22.sp,
-          color: kLightTextColor,
+          color: Color(0xFF191923),
           fontWeight: FontWeight.w500,
         ),
         headline4: TextStyle(
@@ -188,22 +194,22 @@ final Map<AppTheme, ThemeData> appThemeData = {
           fontWeight: FontWeight.w500,
         ),
         headline6: TextStyle(
-          fontSize: 12.sp,
+          fontSize: 16.sp,
           color: kLightSmallTextColor,
-          height: 2.0,
+          height: 2.5,
         ),
         bodyText1: TextStyle(
-          fontSize: 12.sp,
-          color: kLightTextColor,
-        ),
-        bodyText2: TextStyle(
           fontSize: 14.sp,
           color: kLightTextColor,
         ),
-        subtitle1: TextStyle(
-          color: kDarkTextColor,
+        bodyText2: TextStyle(
           fontSize: 12.sp,
-          fontWeight: FontWeight.w500,
+          color: kLightTextColor,
+        ),
+        subtitle1: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.black,
+          height: 2.5,
         ),
         subtitle2: TextStyle(
           color: kDarkTextColor,

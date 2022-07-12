@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/widgets/expandedTextWidget.dart';
 
 import '../food_home_page/components/footerCard.dart';
 
@@ -9,7 +10,7 @@ class PopularProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
         children: [
           // Header for the image
@@ -78,7 +79,7 @@ class PopularProductPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               width: double.maxFinite,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).canvasColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20.r),
                   topRight: Radius.circular(20.r),
@@ -135,22 +136,21 @@ class PopularProductPage extends StatelessWidget {
                   ),
                   bottomOfCard(context),
                   SizedBox(
-                    height: 8.h,
+                    height: 16.h,
                   ),
                   Text(
                     "Introduce",
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   SizedBox(
-                    height: 16.h,
+                    height: 8.h,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: SingleChildScrollView(
-                      child: Text(
-                        "Jfdklsdjfkldjaflkdskfjdslafkldsjfkdslfdsklfjdsklfjdskljfklsdjfklsdjfkldsjfkljdsklfjdsklfjdskljfkldsjfkdsjfkljdsklfjdsklfjdslkjfkdlsjfkdlsjfklsdjfkldsjfkldsjfkljdsklfjdskljfkldsjfkdsjfkljdsklfjdsklfjklsdjfkldsjfklsdajfkldsjfkldsjfkldsjfkldsjfklasdjfkldjskfjdskljfklsdjfkjsdklfjkladsjfkldsfdkslf jdsklf jdsklf jdkslf jdkls fjkdls jfkldsfjkdls fjklds fjkdlsfjdk lfj sldkf jdskl fdsj fjds fldks fjd slkf df dskf sd fdsk fldjs klfdjs klfjdsklfjds klfj dsklf jdklsf jdkls fjdl fjd lkfj dslkf dsjflk djskfl djs fdsk fklds fjdskl fjdlskaf ",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ),
+                        child: ExpandedTextWidget(
+                      text:
+                          "j jd jfklds jfkldf jdlk fjdsklf jdksljfkldj fkdjsf kdsjfkldf djfkljd sklfj dklfj dskfj kdlsjfklsda jfkldsj fklsdjfklj dsklfjsd klfj sdklfj sdklfj sdklf ksdljf klsdjf klsda jfklsdj fkldsjfklsdj fkljsdklf jsdklfjsdlakfjdlsak  jdsklf jdsklf jdkslf jdkls fjkdls jfkldsfjkdls fjklds fjkdlsfjdk lfj sldkf jdskl fdsj fjds fldks fjd slkf df dskf sd fdsk fldjs klfdjs klfjdsklfjds klfj dsklf jdklsf jdkls fjdl fjd lkfj dslkf dsjflk djskfl djs fdsk fklds fjdskl fjdlskaf ",
+                    )),
                   ),
                 ],
               ),
@@ -162,7 +162,7 @@ class PopularProductPage extends StatelessWidget {
         width: double.maxFinite,
         height: 90.h,
         decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(40.r),
             topRight: Radius.circular(40.r),
@@ -184,6 +184,7 @@ class PopularProductPage extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.remove,
+                    color: Theme.of(context).accentColor,
                   ),
                   Text(
                     "0",
@@ -191,6 +192,7 @@ class PopularProductPage extends StatelessWidget {
                   ),
                   Icon(
                     Icons.add,
+                    color: Theme.of(context).accentColor,
                   ),
                 ],
               ),

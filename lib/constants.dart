@@ -14,14 +14,19 @@ const Color kMediumTextColor = Colors.black;
 // primary color of the aplication in nsdd
 // const Color kPrimaryColor = Color(0xFF8B010B);
 // k dark themes colors
-
+const primaryColor = Color(0xFFFFC107);
+const secondaryColor = Color(0xFF242430);
+const darkColor = Color(0xFF191923);
+const bodyTextColor = Color(0xFF8B8B8D);
+const bgColor = Color(0xFF1E1E28);
 const Color kDarkPrimary = Color(0xFF4CC49B);
 const Color kDarkAccent = Color(0xFF4CC49B);
 const Color kDarkTextColor = Colors.white;
 const Color kDarkPlaceholder = Color(0xFF2D3655);
 const Color kDarkPlaceholderText = Color(0xFF525C7C);
-const Color kDarkBackground = Colors.black;
+const Color kDarkBackground = Color(0xFF191923);
 const Color kDarkError = Colors.black;
+const Color kDarkCardColor = Color(0xFF242430);
 
 const Duration kAnimationDuration = Duration(milliseconds: 300);
 const Curve kAnimationCurve = Curves.easeInOut;
