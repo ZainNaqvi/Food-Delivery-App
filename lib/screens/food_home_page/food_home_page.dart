@@ -71,83 +71,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                             height: 22.h,
                           ),
                           // Popular product list view builder
-                          SizedBox(
-                            height: 900.h,
-                            child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: 12,
-                                // shrinkWrap: true,
-                                itemBuilder: (context, index) => Container(
-                                      child: Row(children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                            bottom: 8.h,
-                                          ),
-                                          width: 100,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(14.r),
-                                            image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                  "assets/images/home_food_2.jpg",
-                                                )),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Center(
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    Theme.of(context).cardColor,
-                                                borderRadius: BorderRadius.only(
-                                                  topRight:
-                                                      Radius.circular(10.r),
-                                                  bottomRight:
-                                                      Radius.circular(10.r),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 6.0,
-                                                    vertical: 4.h),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Nutirtual Free Food Deal with The Good and well taste",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline5,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 6.h,
-                                                    ),
-                                                    Text(
-                                                      "Nutirtual Free Food Deal with The Good and well taste",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .headline6,
-                                                    ),
-                                                    SizedBox(
-                                                      height: 6.h,
-                                                    ),
-                                                    bottomOfCard(context),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ]),
-                                    )),
-                          )
+                          productList()
                         ],
                       ),
                     ),
@@ -159,6 +83,86 @@ class _FoodHomePageState extends State<FoodHomePage> {
         ),
       ),
     );
+  }
+
+  SizedBox productList() {
+    return SizedBox(
+                          height: 900.h,
+                          child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 12,
+                              // shrinkWrap: true,
+                              itemBuilder: (context, index) => Container(
+                                    child: Row(children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                          bottom: 8.h,
+                                        ),
+                                        width: 100,
+                                        height: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14.r),
+                                          image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: AssetImage(
+                                                "assets/images/home_food_2.jpg",
+                                              )),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Center(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Theme.of(context).cardColor,
+                                              borderRadius: BorderRadius.only(
+                                                topRight:
+                                                    Radius.circular(10.r),
+                                                bottomRight:
+                                                    Radius.circular(10.r),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 6.0,
+                                                  vertical: 4.h),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Nutirtual Free Food Deal with The Good and well taste",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline5,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6.h,
+                                                  ),
+                                                  Text(
+                                                    "Nutirtual Free Food Deal with The Good and well taste",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 6.h,
+                                                  ),
+                                                  bottomOfCard(context),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  )),
+                        );
   }
 
   Widget _buildStakeContainer(int itemIndex) {
