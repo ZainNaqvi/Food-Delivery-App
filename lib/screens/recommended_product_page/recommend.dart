@@ -4,6 +4,7 @@ import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:food_delivery_application/widgets/expandedTextWidget.dart';
 
 import '../../widgets/bottomNavigation.dart';
+import '../../widgets/custamBottomBar.dart';
 import '../productDetail/components/headerAppIcon.dart';
 
 class RecommendedProductPage extends StatelessWidget {
@@ -91,7 +92,7 @@ class RecommendedProductPage extends StatelessWidget {
           SizedBox(
             height: 8.h,
           ),
-          customBottomNavigation(),
+          BottomBar(context),
         ],
       ),
     );
