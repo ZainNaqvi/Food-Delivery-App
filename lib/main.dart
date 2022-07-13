@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
+import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
 import 'package:food_delivery_application/themes/theme.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: FoodHomePage(),
+      child: RecommendedProductPage(),
     );
   }
 }

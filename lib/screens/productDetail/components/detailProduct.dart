@@ -83,6 +83,7 @@ Positioned detailProduct(BuildContext context) {
           const Expanded(
             child: SingleChildScrollView(
                 child: ExpandedTextWidget(
+              textLength: 70,
               text:
                   "j jd jfklds jfkldf jdlk fjdsklf jdksljfkldj fkdjsf kdsjfkldf djfkljd sklfj dklfj dskfj kdlsjfklsda jfkldsj fklsdjfklj dsklfjsd klfj sdklfj sdklfj sdklf ksdljf klsdjf klsda jfklsdj fkldsjfklsdj fkljsdklf jsdklfjsdlakfjdlsak  jdsklf jdsklf jdkslf jdkls fjkdls jfkldsfjkdls fjklds fjkdlsfjdk lfj sldkf jdskl fdsj fjds fldks fjd slkf df dskf sd fdsk fldjs klfdjs klfjdsklfjds klfj dsklf jdklsf jdkls fjdl fjd lkfj dslkf dsjflk djskfl djs fdsk fklds fjdskl fjdlskaf ",
             )),

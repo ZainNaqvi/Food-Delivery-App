@@ -5,10 +5,11 @@ import 'package:food_delivery_application/constants.dart';
 
 class ExpandedTextWidget extends StatefulWidget {
   final String text;
-
+  final int textLength;
   const ExpandedTextWidget({
     Key? key,
     required this.text,
+    required this.textLength,
   }) : super(key: key);
 
   @override
@@ -23,9 +24,10 @@ class _ExpandedTextWidgetState extends State<ExpandedTextWidget> {
   @override
   void initState() {
     super.initState();
-    if (widget.text.length > 70) {
-      firstHalf = widget.text.substring(0, 70);
-      secondHalf = widget.text.substring(70 + 1, widget.text.length);
+    if (widget.text.length > widget.textLength) {
+      firstHalf = widget.text.substring(0, widget.textLength);
+      secondHalf =
+          widget.text.substring(widget.textLength + 1, widget.text.length);
     } else {
       firstHalf = widget.text;
       secondHalf = "";

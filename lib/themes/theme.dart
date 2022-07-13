@@ -55,8 +55,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline2: TextStyle(
           fontSize: 30.sp,
-          color: kDarkTextColor,
-          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontWeight: FontWeight.w300,
         ),
         headline3: TextStyle(
           fontSize: 22.sp,
@@ -176,8 +176,8 @@ final Map<AppTheme, ThemeData> appThemeData = {
         ),
         headline2: TextStyle(
           fontSize: 30.sp,
-          color: kLightTextColor,
-          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontWeight: FontWeight.w300,
         ),
         headline3: TextStyle(
           fontSize: 22.sp,

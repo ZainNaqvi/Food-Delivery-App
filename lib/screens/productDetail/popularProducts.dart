@@ -17,7 +17,7 @@ class PopularProductPage extends StatelessWidget {
           // Header for the image
           header(),
           // for the two icons at the top of the image
-          headerAppIcon(),
+          headerAppIcon(context),
           // Detail of the popular product
           detailProduct(context),
         ],
