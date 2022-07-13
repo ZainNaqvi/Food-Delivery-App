@@ -45,6 +45,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
     scaffoldBackgroundColor: kDarkBackground,
     backgroundColor: kDarkPlaceholder,
     errorColor: kDarkError,
+    cursorColor: kDarkCardColor,
     textTheme: GoogleFonts.poppinsTextTheme(
       const TextTheme().copyWith(
         caption: TextStyle(color: Colors.white),
@@ -162,6 +163,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
     cardColor: Colors.white,
     buttonColor: Colors.grey[300],
     accentColor: Colors.black,
+    cursorColor: Colors.teal,
     primaryColor: kLightPrimary,
     scaffoldBackgroundColor: kLightBackground,
     backgroundColor: kLightPlaceholder,

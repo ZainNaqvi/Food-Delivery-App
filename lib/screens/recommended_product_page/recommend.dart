@@ -28,7 +28,7 @@ class RecommendedProductPage extends StatelessWidget {
                     topLeft: Radius.circular(10.r),
                     topRight: Radius.circular(10.r),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                 ),
                 child: Center(
                   child: Text(
@@ -39,7 +39,7 @@ class RecommendedProductPage extends StatelessWidget {
               ),
             ),
             pinned: true,
-            backgroundColor: Colors.teal,
+            backgroundColor: Theme.of(context).cursorColor,
             expandedHeight: 300.h,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
