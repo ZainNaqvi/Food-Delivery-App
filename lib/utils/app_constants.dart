@@ -8,3 +8,4 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "api/v1/products/recommended";
   static const String APP_TOKEN = "myappToken";
 }
+// http://mvs.bslmeiyu.com/api/v1/products/popular
