@@ -5,7 +5,6 @@ class PopularProduct extends GetxService {
   final ApiClient apiClient;
   PopularProduct({required this.apiClient});
   Future<Response> getPopularProductList() async {
-    return apiClient.getData(
-        uri: "http://mvs.bslmeiyu.com/api/v1/products/popular");
+    return apiClient.getData(uri: "api/v1/products/popular");
   }
 }

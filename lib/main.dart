@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/themes/theme.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'helper/dependency.dart' as dep;
 
 void main() async {
@@ -21,7 +24,8 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        Get.find<PopularProductController>().getPopularProductList();
+        return GetMaterialApp(
           themeMode: ThemeMode.system,
           darkTheme: appThemeData[AppTheme.Dark],
           theme: appThemeData[AppTheme.Light],
