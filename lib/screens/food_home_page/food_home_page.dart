@@ -1,9 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
+import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
+import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
+import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
+import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:get/get.dart';
 import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
@@ -44,7 +49,10 @@ class _FoodHomePageState extends State<FoodHomePage> {
         child: Column(
           children: [
             // food Home screen header
-            header(context),
+            GetBuilder<PopularProductController>(
+              builder: (value) =>
+                  value.isLoading ? header(context) : Container(),
+            ),
             // End of the food Home screen header
 
             // starting of the page view builder
@@ -53,37 +61,57 @@ class _FoodHomePageState extends State<FoodHomePage> {
                 child: Column(
                   children: [
                     GetBuilder<PopularProductController>(
-                      builder: (value) => SizedBox(
-                        height: 280.h,
-                        width: double.infinity,
-                        child: PageView.builder(
-                          controller: _pageController,
-                          itemCount: value.PopularProductListData.length,
-                          itemBuilder: (BuildContext context, int itemIndex) {
-                            return _buildStakeContainer(itemIndex);
-                          },
-                        ),
-                      ),
+                      builder: (value) => value.isLoading
+                          ? SizedBox(
+                              height: 280.h,
+                              width: double.infinity,
+                              child: PageView.builder(
+                                controller: _pageController,
+                                itemCount: value.PopularProductListData.length,
+                                itemBuilder:
+                                    (BuildContext context, int itemIndex) {
+                                  return _buildStakeContainer(itemIndex,
+                                      value.PopularProductListData[itemIndex]);
+                                },
+                              ),
+                            )
+                          : Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: MediaQuery.of(context).size.height *
+                                      0.40),
+                              child: Center(
+                                child: CupertinoActivityIndicator(
+                                  color: Colors.teal,
+                                  radius: 50,
+                                ),
+                              ),
+                            ),
                     ),
                     // dot indicator
                     GetBuilder<PopularProductController>(
-                      builder: (value) => dotIndicator(
-                        currentPageValue: _currentPageValue,
-                        dotCount: value.PopularProductListData.length,
-                      ),
+                      builder: (value) => value.isLoading
+                          ? dotIndicator(
+                              currentPageValue: _currentPageValue,
+                              dotCount: value.PopularProductListData.length,
+                            )
+                          : Container(),
                     ),
                     // Popular product text
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Column(
-                        children: [
-                          productText(context),
-                          SizedBox(
-                            height: 22.h,
-                          ),
-                          // Popular product list view builder
-                          productList()
-                        ],
+                    GetBuilder<RecommendedProductController>(
+                      builder: (value) => Container(
+                        margin: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: value.isLoading
+                            ? Column(
+                                children: [
+                                  productText(context),
+                                  SizedBox(
+                                    height: 22.h,
+                                  ),
+                                  // Popular product list view builder
+                                  productList()
+                                ],
+                              )
+                            : Container(),
                       ),
                     ),
                   ],
@@ -97,80 +125,89 @@ class _FoodHomePageState extends State<FoodHomePage> {
   }
 
   Widget productList() {
-    return SizedBox(
-      height: 900.h,
-      child: ListView.builder(
+    return GetBuilder<RecommendedProductController>(
+      builder: (value) => ListView.builder(
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 12,
-          // shrinkWrap: true,
+          itemCount: value.RecommendedProductListData.length,
+          shrinkWrap: true,
           itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => RecommendedProductPage()));
-                },
-                child: Container(
-                  child: Row(children: [
-                    Container(
-                      margin: EdgeInsets.only(
-                        bottom: 16.h,
-                      ),
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14.r),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              "assets/images/home_food_2.jpg",
-                            )),
-                      ),
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(10.r),
-                              bottomRight: Radius.circular(10.r),
+                onTap: () {},
+                child: value.isLoading
+                    ? Container(
+                        child: Row(children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                              bottom: 16.h,
+                            ),
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14.r),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    AppConstants.APP_BASEURL +
+                                        "/uploads/" +
+                                        value.RecommendedProductListData[index]
+                                            .img,
+                                  )),
                             ),
                           ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6.0, vertical: 4.h),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Nutirtual Free Food Deal with The Good and well taste",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.headline5,
+                          Expanded(
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10.r),
+                                    bottomRight: Radius.circular(10.r),
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 6.h,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 6.0, vertical: 4.h),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        value.RecommendedProductListData[index]
+                                            .name,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
+                                      SizedBox(
+                                        height: 6.h,
+                                      ),
+                                      Text(
+                                        value.RecommendedProductListData[index]
+                                            .description,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6,
+                                      ),
+                                      SizedBox(
+                                        height: 6.h,
+                                      ),
+                                      bottomOfCard(context),
+                                    ],
+                                  ),
                                 ),
-                                Text(
-                                  "Nutirtual Free Food Deal with The Good and well taste",
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.headline6,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                bottomOfCard(context),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
+                        ]),
+                      )
+                    : Container(),
               )),
     );
   }
 
-  Widget _buildStakeContainer(int itemIndex) {
+  Widget _buildStakeContainer(int itemIndex, ProductModel value) {
     Matrix4 matrix4 = Matrix4.identity();
     if (itemIndex == _currentPageValue.floor()) {
       var currentScale =
@@ -212,7 +249,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
                 borderRadius: BorderRadius.circular(14.r),
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/home_food_1.jpg')),
+                    image: NetworkImage(
+                        AppConstants.APP_BASEURL + "/uploads/" + value.img!)),
               ),
             ),
             Align(
@@ -249,7 +287,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Chees Side",
+                        value.name!,
+                        maxLines: 1,
                         style: Theme.of(context).textTheme.headline4,
                       ),
                       SizedBox(
@@ -260,7 +299,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                         children: [
                           Wrap(
                             children: List.generate(
-                              5,
+                              value.stars!,
                               (index) => Icon(
                                 Icons.star,
                                 color: Colors.teal,
@@ -272,7 +311,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                             width: 6.w,
                           ),
                           Text(
-                            "4.5",
+                            value.stars!.toString(),
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           SizedBox(

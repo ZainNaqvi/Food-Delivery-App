@@ -2,14 +2,16 @@ import 'package:food_delivery_application/data/repositories/product_popular_repo
 import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:get/get.dart';
 
-class PopularProductController extends GetxController {
-  final PopularProduct popularProduct;
-  PopularProductController({required this.popularProduct});
+import '../data/repositories/recommended_product_repo.dart';
+
+class RecommendedProductController extends GetxController {
+  final RecommendedProduct recommendedProduct;
+  RecommendedProductController({required this.recommendedProduct});
   List<dynamic> _list = [];
-  List<dynamic> get PopularProductListData => _list;
+  List<dynamic> get RecommendedProductListData => _list;
   bool isLoading = false;
-  Future<void> getPopularProductList() async {
-    Response response = await popularProduct.getPopularProductList();
+  Future<void> getRecommendedProductList() async {
+    Response response = await recommendedProduct.getRecommendedProductList();
     // ignore: unrelated_type_equality_checks
     if (response.isOk) {
       print("Got Products");
