@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
+import 'package:get/get.dart';
 import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
 import 'components/productText.dart';
@@ -50,19 +52,26 @@ class _FoodHomePageState extends State<FoodHomePage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 280.h,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int itemIndex) {
-                          return _buildStakeContainer(itemIndex);
-                        },
+                    GetBuilder<PopularProductController>(
+                      builder: (value) => SizedBox(
+                        height: 280.h,
+                        width: double.infinity,
+                        child: PageView.builder(
+                          controller: _pageController,
+                          itemCount: value.PopularProductListData.length,
+                          itemBuilder: (BuildContext context, int itemIndex) {
+                            return _buildStakeContainer(itemIndex);
+                          },
+                        ),
                       ),
                     ),
                     // dot indicator
-                    dotIndicator(currentPageValue: _currentPageValue),
+                    GetBuilder<PopularProductController>(
+                      builder: (value) => dotIndicator(
+                        currentPageValue: _currentPageValue,
+                        dotCount: value.PopularProductListData.length,
+                      ),
+                    ),
                     // Popular product text
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 16.w),
