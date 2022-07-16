@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/routes.dart';
+import 'package:get/get.dart';
 
 Positioned headerAppIcon(BuildContext context) {
   return Positioned(
@@ -11,7 +13,8 @@ Positioned headerAppIcon(BuildContext context) {
       children: [
         InkWell(
           onTap: () {
-            Navigator.of(context).pop();
+            Get.toNamed(AppRoutes.initial);
+            // Get.back();
           },
           child: Container(
             padding: EdgeInsets.only(left: 8.w),

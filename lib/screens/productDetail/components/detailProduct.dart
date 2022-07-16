@@ -4,7 +4,7 @@ import 'package:food_delivery_application/screens/food_home_page/components/foot
 
 import '../../../widgets/expandedTextWidget.dart';
 
-Positioned detailProduct(BuildContext context) {
+Positioned detailProduct(BuildContext context, final product) {
   return Positioned(
     top: 295.h,
     left: 0,
@@ -24,7 +24,7 @@ Positioned detailProduct(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Chees Side",
+            product.name!,
             style: Theme.of(context).textTheme.headline4,
           ),
           SizedBox(
@@ -35,7 +35,7 @@ Positioned detailProduct(BuildContext context) {
             children: [
               Wrap(
                 children: List.generate(
-                  5,
+                  product.stars!,
                   (index) => Icon(
                     Icons.star,
                     color: Colors.teal,
@@ -80,12 +80,11 @@ Positioned detailProduct(BuildContext context) {
           SizedBox(
             height: 8.h,
           ),
-          const Expanded(
+          Expanded(
             child: SingleChildScrollView(
                 child: ExpandedTextWidget(
               textLength: 70,
-              text:
-                  "j jd jfklds jfkldf jdlk fjdsklf jdksljfkldj fkdjsf kdsjfkldf djfkljd sklfj dklfj dskfj kdlsjfklsda jfkldsj fklsdjfklj dsklfjsd klfj sdklfj sdklfj sdklf ksdljf klsdjf klsda jfklsdj fkldsjfklsdj fkljsdklf jsdklfjsdlakfjdlsak  jdsklf jdsklf jdkslf jdkls fjkdls jfkldsfjkdls fjklds fjkdlsfjdk lfj sldkf jdskl fdsj fjds fldks fjd slkf df dskf sd fdsk fldjs klfdjs klfjdsklfjds klfj dsklf jdklsf jdkls fjdl fjd lkfj dslkf dsjflk djskfl djs fdsk fklds fjdskl fjdlskaf ",
+              text: product.description!,
             )),
           ),
         ],

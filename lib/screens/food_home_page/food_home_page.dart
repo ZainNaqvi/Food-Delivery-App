@@ -5,6 +5,7 @@ import 'package:food_delivery_application/controllers/popular_product_controller
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
 import 'package:food_delivery_application/models/popular_products_model.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
@@ -234,8 +235,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
     }
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => PopularProductPage()));
+        print("Index is : $itemIndex");
+        Get.toNamed(AppRoutes.getPopularPage(itemIndex));
       },
       child: Transform(
         transform: matrix4,

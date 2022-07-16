@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/utils/app_constants.dart';
 
-Positioned header() {
+Positioned header(String img) {
   return Positioned(
     left: 0,
     right: 0,
@@ -12,7 +13,7 @@ Positioned header() {
         color: Colors.teal,
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage('assets/images/home_food_1.jpg'),
+          image: NetworkImage(AppConstants.APP_BASEURL + "/uploads/" + img),
         ),
       ),
     ),
