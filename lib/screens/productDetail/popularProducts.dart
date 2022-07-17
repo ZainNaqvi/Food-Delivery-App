@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/screens/productDetail/components/header.dart';
@@ -22,6 +23,7 @@ class PopularProductPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(
+        clipBehavior: Clip.none,
         children: [
           // Header for the image
           header(product.img!),
@@ -29,6 +31,31 @@ class PopularProductPage extends StatelessWidget {
           headerAppIcon(context),
           // Detail of the popular product
           detailProduct(context, product),
+          GetBuilder<PopularProductController>(
+            builder: (value) => Positioned(
+              top: 38.h,
+              right: 18.w,
+              child: Get.find<PopularProductController>().totalItems >= 1
+                  ? AnimatedContainer(
+                      duration: Duration(milliseconds: 300),
+                      width: 24.w,
+                      height: 24.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.teal,
+                      ),
+                      child: Center(
+                          child: Text(
+                        Get.find<PopularProductController>()
+                            .totalItems
+                            .toString(),
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      )),
+                    )
+                  : Container(),
+            ),
+          )
         ],
       ),
       bottomNavigationBar: customBottomNavigation(pageId: itemIndex),

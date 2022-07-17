@@ -48,7 +48,7 @@ class customBottomNavigation extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    value.quantity.toString(),
+                    value.cartItems.toString(),
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   GestureDetector(

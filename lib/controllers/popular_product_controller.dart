@@ -40,9 +40,9 @@ class PopularProductController extends GetxController {
   }
 
   chechQuantity(int quantity) {
-    if (quantity <= 0) {
+    if ((_inCartItems + quantity) <= 0) {
       return 0;
-    } else if (quantity >= 20) {
+    } else if ((_inCartItems + quantity) >= 20) {
       return 20;
     } else {
       return quantity;
@@ -63,13 +63,13 @@ class PopularProductController extends GetxController {
   }
 
   addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    update();
+  }
 
-      Get.snackbar("Message", "The items are added to the list.");
-    } else {
-      Get.snackbar("Message", "You should add at least an item to the cart");
-    }
+  int get totalItems {
+    return _cart.totalItems;
   }
 }
