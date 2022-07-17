@@ -132,7 +132,9 @@ class _FoodHomePageState extends State<FoodHomePage> {
           itemCount: value.RecommendedProductListData.length,
           shrinkWrap: true,
           itemBuilder: (context, index) => InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(AppRoutes.getRecommendedPage(index));
+                },
                 child: value.isLoading
                     ? Container(
                         child: Row(children: [

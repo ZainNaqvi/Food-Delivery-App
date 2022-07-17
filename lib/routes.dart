@@ -1,5 +1,4 @@
 import 'package:flutter/animation.dart';
-import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
@@ -12,7 +11,8 @@ class AppRoutes {
 
   static String getInitialPage() => "${initial}";
   static String getPopularPage(int pageID) => "$popularFoodPage?pageId=$pageID";
-  static String getRecommendedPage() => "$recommendFoodPage";
+  static String getRecommendedPage(int pageId) =>
+      "$recommendFoodPage?pageId=$pageId";
 
   static List<GetPage> routes = [
     GetPage(
@@ -32,6 +32,15 @@ class AppRoutes {
       transition: Transition.leftToRightWithFade,
       curve: Curves.easeInOut,
     ),
-    GetPage(name: recommendFoodPage, page: () => RecommendedProductPage()),
+    GetPage(
+        transition: Transition.leftToRightWithFade,
+        curve: Curves.easeInOut,
+        name: recommendFoodPage,
+        page: () {
+          String? pageId = Get.parameters['pageId'];
+          return RecommendedProductPage(
+                      itemIndex: int.parse(pageId!),
+          );
+        }),
   ];
 }

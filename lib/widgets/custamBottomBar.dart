@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
+import 'package:food_delivery_application/models/popular_products_model.dart';
 
-BottomBar(BuildContext context) => Container(
+BottomBar(BuildContext context,final product) => Container(
       width: double.maxFinite,
       height: 90.h,
       decoration: BoxDecoration(
@@ -37,7 +39,7 @@ BottomBar(BuildContext context) => Container(
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "\$6786 Add To Cart",
+              "\$${product.name!} Add To Cart",
               maxLines: 1,
               style: TextStyle(
                 color: Colors.white,
