@@ -17,7 +17,7 @@ class PopularProductPage extends StatelessWidget {
     var product =
         Get.find<PopularProductController>().PopularProductListData[itemIndex];
     Get.find<PopularProductController>()
-        .setInitQuantity(Get.find<CartProductController>());
+        .setInitQuantity(product, Get.find<CartProductController>());
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

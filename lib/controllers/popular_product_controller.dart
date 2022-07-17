@@ -14,7 +14,7 @@ class PopularProductController extends GetxController {
   int _quantity = 0;
   int get quantity => _quantity;
   int _inCartItems = 0;
-  int get cartItems => _inCartItems;
+  int get cartItems => _inCartItems + _quantity;
   late CartProductController _cart;
   Future<void> getPopularProductList() async {
     Response response = await popularProduct.getPopularProductList();
@@ -49,14 +49,27 @@ class PopularProductController extends GetxController {
     }
   }
 
-  setInitQuantity(CartProductController cart) {
+  setInitQuantity(ProductModel product, CartProductController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exists = false;
+
+    exists = _cart.isCartExists(product);
+    if (exists) {
+      _inCartItems = _cart.getQuantity(product);
+      print("quantity of this id is : " + _inCartItems.toString());
+    }
   }
 
   addItem(ProductModel product) {
-    _cart.addItem(product, _quantity);
-    update();
+    if (_quantity > 0) {
+      _cart.addItem(product, _quantity);
+      _quantity = 0;
+
+      Get.snackbar("Message", "The items are added to the list.");
+    } else {
+      Get.snackbar("Message", "You should add at least an item to the cart");
+    }
   }
 }
