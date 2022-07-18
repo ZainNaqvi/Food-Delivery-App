@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/productDetail/components/header.dart';
 import 'package:food_delivery_application/screens/productDetail/components/headerAppIcon.dart';
 import 'package:get/get.dart';
@@ -9,14 +10,20 @@ import 'package:get/get.dart';
 import '../../widgets/bottomNavigation.dart';
 import 'components/detailProduct.dart';
 
-class PopularProductPage extends StatelessWidget {
+class PopularProductPage extends StatefulWidget {
   int itemIndex;
   PopularProductPage({Key? key, required this.itemIndex}) : super(key: key);
 
   @override
+  State<PopularProductPage> createState() => _PopularProductPageState();
+}
+
+class _PopularProductPageState extends State<PopularProductPage> {
+  @override
   Widget build(BuildContext context) {
     var product =
-        Get.find<PopularProductController>().PopularProductListData[itemIndex];
+        Get.find<PopularProductController>()
+        .PopularProductListData[widget.itemIndex];
     Get.find<PopularProductController>()
         .setInitQuantity(product, Get.find<CartProductController>());
 
@@ -93,9 +100,7 @@ class PopularProductPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      value.quantity + value.cartTotalItems == 0
-                          ? 0.toString()
-                          : value.cartTotalItems.toString(),
+                      value.cartTotalItems.toString(),
                       style: Theme.of(context).textTheme.headline3,
                     ),
                     GestureDetector(
@@ -112,7 +117,10 @@ class PopularProductPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  value.addItem(product);
+                  setState(() {
+                    value.addItem(product);
+                  });
+                
                 },
                 child: Container(
                   padding: EdgeInsets.all(18.r),
