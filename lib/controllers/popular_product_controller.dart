@@ -14,7 +14,15 @@ class PopularProductController extends GetxController {
   int _quantity = 0;
   int get quantity => _quantity;
   int _inCartItems = 0;
-  int get cartItems => _inCartItems + _quantity;
+
+  int get cartTotalItems {
+    print("In Cart Items" + _inCartItems.toString());
+    print("My quantity $_quantity");
+    print("Here total ");
+    print(_inCartItems + _quantity);
+    return _inCartItems + _quantity;
+  }
+
   late CartProductController _cart;
   Future<void> getPopularProductList() async {
     Response response = await popularProduct.getPopularProductList();
@@ -41,8 +49,7 @@ class PopularProductController extends GetxController {
   }
 
   chechQuantity(int quantity) {
-    if ((_inCartItems + quantity) < 0) {
-      print("$quantity  +$_inCartItems");
+    if (_inCartItems + quantity < 0) {
       Get.snackbar("Message", "You cant reduce more.");
       if (_inCartItems > 0) {
         _quantity = -_inCartItems;
@@ -50,7 +57,7 @@ class PopularProductController extends GetxController {
       }
 
       return 0;
-    } else if ((_inCartItems + quantity) >= 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       return 20;
     } else {
       return quantity;
@@ -73,8 +80,11 @@ class PopularProductController extends GetxController {
   addItem(ProductModel product) {
     _cart.addItem(product, _quantity);
     _quantity = 0;
+    if (_inCartItems > 0) {
+      _quantity = -_inCartItems;
+    }
     _inCartItems = _cart.getQuantity(product);
-
+    print(_inCartItems);
     update();
   }
 
