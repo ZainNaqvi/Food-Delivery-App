@@ -65,6 +65,7 @@ class customBottomNavigation extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+               
                 value.addItem(product);
               },
               child: Container(

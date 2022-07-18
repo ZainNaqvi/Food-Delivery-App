@@ -36,11 +36,19 @@ class PopularProductController extends GetxController {
     } else {
       _quantity = chechQuantity(_quantity - 1);
     }
+
     update();
   }
 
   chechQuantity(int quantity) {
-    if ((_inCartItems + quantity) <= 0) {
+    if ((_inCartItems + quantity) < 0) {
+      print("$quantity  +$_inCartItems");
+      Get.snackbar("Message", "You cant reduce more.");
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
+
       return 0;
     } else if ((_inCartItems + quantity) >= 20) {
       return 20;
@@ -66,6 +74,7 @@ class PopularProductController extends GetxController {
     _cart.addItem(product, _quantity);
     _quantity = 0;
     _inCartItems = _cart.getQuantity(product);
+
     update();
   }
 

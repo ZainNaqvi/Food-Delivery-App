@@ -7,7 +7,7 @@ class ApiClient extends GetConnect implements GetxService {
   late Map<String, String> _mainHeader;
   ApiClient({required String appbaseurl}) {
     baseUrl = appbaseurl;
-    timeout = Duration(seconds: 30);
+    timeout = const Duration(seconds: 30);
     _mainHeader = {
       'Content-Type': 'application/json; charset=UTF-8',
       "Authorization": "Bearer $token",

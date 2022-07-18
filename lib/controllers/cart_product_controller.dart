@@ -40,6 +40,7 @@ class CartProductController extends GetxController {
           );
         });
       } else {
+        print(_items);
         Get.snackbar("Message", "You should add at least an item to the cart");
       }
     }

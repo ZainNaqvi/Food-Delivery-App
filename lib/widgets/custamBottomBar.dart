@@ -39,7 +39,7 @@ BottomBar(BuildContext context,final product) => Container(
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
-              "\$${product.name!} Add To Cart",
+              "\$${product.price!} Add To Cart",
               maxLines: 1,
               style: TextStyle(
                 color: Colors.white,
