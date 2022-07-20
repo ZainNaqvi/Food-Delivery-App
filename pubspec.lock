@@ -137,6 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  ini:
+    dependency: "direct main"
+    description:
+      name: ini
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   lints:
     dependency: transitive
     description:

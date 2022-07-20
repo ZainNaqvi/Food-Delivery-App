@@ -6,7 +6,7 @@ import '../../../widgets/expandedTextWidget.dart';
 
 Positioned detailProduct(BuildContext context, final product) {
   return Positioned(
-    top: 295.h,
+    top: MediaQuery.of(context).size.height * 0.4,
     left: 0,
     right: 0,
     child: Container(

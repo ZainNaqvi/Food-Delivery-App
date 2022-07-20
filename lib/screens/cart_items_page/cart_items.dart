@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class CartPage extends StatelessWidget {
@@ -14,26 +16,32 @@ class CartPage extends StatelessWidget {
       body: Stack(children: [
         // Header
         Positioned(
-            top: 18.h,
+            top: 34.h,
             left: 16.w,
             right: 16.w,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcons(
-                  context: context,
-                  iconData: Icons.arrow_back_ios,
-                  backgrounColor: Colors.teal,
-                  iconColor: Colors.white,
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: AppIcons(
+                    context: context,
+                    iconData: Icons.arrow_back_ios,
+                    backgrounColor: Colors.teal,
+                    iconColor: Colors.white,
+                  ),
                 ),
                 SizedBox(
                   width: 100.w,
                 ),
-                AppIcons(
-                  context: context,
-                  iconData: Icons.home_outlined,
-                  backgrounColor: Colors.teal,
-                  iconColor: Colors.white,
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoutes.initial),
+                  child: AppIcons(
+                    context: context,
+                    iconData: Icons.home_outlined,
+                    backgrounColor: Colors.teal,
+                    iconColor: Colors.white,
+                  ),
                 ),
                 AppIcons(
                   context: context,
@@ -86,6 +94,7 @@ class CartPage extends StatelessWidget {
                             children: [
                               Text(
                                 value.getItems[index].name!,
+                                maxLines: 1,
                                 style: Theme.of(context).textTheme.headline5,
                               ),
                               Text(
@@ -106,7 +115,7 @@ class CartPage extends StatelessWidget {
                                   Container(
                                     margin: EdgeInsets.symmetric(
                                         horizontal: 16.w, vertical: 0.h),
-                                    padding: EdgeInsets.all(12.r),
+                                    padding: EdgeInsets.all(8.r),
                                     width: 110.w,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -117,7 +126,11 @@ class CartPage extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            value.addItem(
+                                                value.getItems[index].product!,
+                                                -1);
+                                          },
                                           child: Icon(
                                             Icons.remove,
                                             color:
@@ -125,13 +138,18 @@ class CartPage extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "0",
+                                          value.getItems[index].quantity
+                                              .toString(),
                                           style: Theme.of(context)
                                               .textTheme
                                               .headline3,
                                         ),
                                         GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            value.addItem(
+                                                value.getItems[index].product!,
+                                                1);
+                                          },
                                           child: Icon(
                                             Icons.add,
                                             color:

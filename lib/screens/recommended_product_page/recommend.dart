@@ -2,6 +2,7 @@ import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/screens/cart_items_page/cart_items.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:food_delivery_application/widgets/expandedTextWidget.dart';
@@ -26,8 +27,7 @@ class RecommendedProductPage extends StatefulWidget {
 class _RecommendedProductPageState extends State<RecommendedProductPage> {
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<RecommendedProductController>()
+    var product = Get.find<RecommendedProductController>()
         .RecommendedProductListData[widget.itemIndex];
     Get.find<PopularProductController>()
         .setInitQuantity(product, Get.find<CartProductController>());
@@ -71,19 +71,28 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                             ),
                           ),
                         ),
-                        Container(
-                          width: 44.w,
-                          height: 44.h,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.grey[200],
-                          ),
-                          child: Center(
-                            child: Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.black,
+                        GetBuilder<PopularProductController>(builder: (value) {
+                          return GestureDetector(
+                            onTap: () {
+                              if (value.totalItems >= 1)
+                                Get.toNamed(AppRoutes.getCartPage());
+                            },
+                            child: Container(
+                              width: 44.w,
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.grey[200],
+                              ),
+                              child: Center(
+                                child: Icon(
+                                  Icons.add_shopping_cart,
+                                  color: Colors.black,
+                                ),
+                              ),
                             ),
-                          ),
+                          );
+                        }
                         ),
                       ],
                     ),
@@ -93,7 +102,7 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                       top: 38.h,
                       right: -5.w,
                       child:
-                          Get.find<PopularProductController>().totalItems >= 1
+                      value.totalItems >= 1
                               ? AnimatedContainer(
                                   duration: Duration(milliseconds: 300),
                                   width: 24.w,
@@ -260,8 +269,7 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                   ],
                 ),
               );
-            }
-            ),
+            }),
           ],
         );
       }),
