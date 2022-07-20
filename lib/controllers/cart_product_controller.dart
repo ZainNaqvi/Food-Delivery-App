@@ -21,6 +21,7 @@ class CartProductController extends GetxController {
           name: value.name,
           price: value.price,
           img: value.img,
+          product: product,
         );
       });
       if (totalQuantity <= 0) {
@@ -37,6 +38,7 @@ class CartProductController extends GetxController {
             name: product.name,
             price: product.price,
             img: product.img,
+            product: product,
           );
         });
       } else {
