@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 
 import '../../controllers/cart_product_controller.dart';
 import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
+import '../../routes.dart';
 import '../../widgets/bottomNavigation.dart';
 import '../../widgets/custamBottomBar.dart';
 import '../productDetail/components/headerAppIcon.dart';
@@ -20,7 +22,8 @@ class RecommendedProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var product =
-        Get.find<PopularProductController>().PopularProductListData[itemIndex];
+        Get.find<RecommendedProductController>()
+        .RecommendedProductListData[itemIndex];
     Get.find<PopularProductController>()
         .setInitQuantity(product, Get.find<CartProductController>());
     return Scaffold(
@@ -29,7 +32,87 @@ class RecommendedProductPage extends StatelessWidget {
           SliverAppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: 80.h,
-            title: headerAppIcon(context),
+            title: SizedBox(
+              width: double.maxFinite,
+              height: 120.h,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: 4.w,
+                    right: 4.w,
+                    top: 45.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.initial);
+                            // Get.back();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(left: 8.w),
+                            width: 44.w,
+                            height: 44.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey[200],
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 44.w,
+                          height: 44.h,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey[200],
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add_shopping_cart,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GetBuilder<PopularProductController>(
+                    builder: (value) => Positioned(
+                      top: 38.h,
+                      right: -5.w,
+                      child:
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  width: 24.w,
+                                  height: 24.h,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.teal,
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                                )
+                              : Container(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             bottom: PreferredSize(
               preferredSize: Size.fromHeight(30.h),
               child: Container(
@@ -55,7 +138,7 @@ class RecommendedProductPage extends StatelessWidget {
             expandedHeight: 300.h,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-               AppConstants.APP_BASEURL+"/uploads/"+product.img!,
+                AppConstants.APP_BASEURL + "/uploads/" + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -65,47 +148,63 @@ class RecommendedProductPage extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.only(
                   top: 16.h, bottom: 10.h, left: 12.w, right: 12.w),
-              child:  ExpandedTextWidget(
+              child: ExpandedTextWidget(
                 textLength: 190,
-                text:product.description!,
+                text: product.description!,
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 5.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppIcons(
-                  context: context,
-                  backgrounColor: Colors.teal,
-                  iconData: Icons.remove,
-                  iconColor: Colors.white,
-                ),
-                Text(
-                  "\$12.88 " + "X" + "0",
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                AppIcons(
-                  context: context,
-                  backgrounColor: Colors.teal,
-                  iconData: Icons.add,
-                  iconColor: Colors.white,
-                ),
-              ],
+      bottomNavigationBar:
+          GetBuilder<PopularProductController>(builder: (value) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 5.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      value.getIncreament(false);
+                    },
+                    child: AppIcons(
+                      context: context,
+                      backgrounColor: Colors.teal,
+                      iconData: Icons.remove,
+                      iconColor: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    "\$12.88 " + "X" + " ${value.cartTotalItems}",
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      value.getIncreament(true);
+                    },
+                    child: AppIcons(
+                      context: context,
+                      backgrounColor: Colors.teal,
+                      iconData: Icons.add,
+                      iconColor: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          BottomBar(context,product),
-        ],
-      ),
+            SizedBox(
+              height: 8.h,
+            ),
+            BottomBar(
+              context,
+              product,
+            ),
+          ],
+        );
+      }),
     );
   }
 }

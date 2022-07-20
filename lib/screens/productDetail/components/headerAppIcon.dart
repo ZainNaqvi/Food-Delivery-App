@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 Positioned headerAppIcon(BuildContext context) {
   return Positioned(
-    left: 20.w,
-    right: 20.w,
+    left: 18.w,
+    right: 18.w,
     top: 45.h,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

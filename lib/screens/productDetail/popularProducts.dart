@@ -41,7 +41,7 @@ class _PopularProductPageState extends State<PopularProductPage> {
           GetBuilder<PopularProductController>(
             builder: (value) => Positioned(
               top: 38.h,
-              right: 18.w,
+              right: 8.w,
               child: Get.find<PopularProductController>().totalItems >= 1
                   ? AnimatedContainer(
                       duration: Duration(milliseconds: 300),
