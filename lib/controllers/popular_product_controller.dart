@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
+import 'package:food_delivery_application/models/cart_product_model.dart';
 import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:get/get.dart';
 
@@ -76,7 +77,7 @@ class PopularProductController extends GetxController {
   addItem(ProductModel product) {
     _cart.addItem(product, _quantity);
     _quantity = 0;
-      
+
     _inCartItems = _cart.getQuantity(product);
 
     update();
@@ -84,5 +85,9 @@ class PopularProductController extends GetxController {
 
   int get totalItems {
     return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }

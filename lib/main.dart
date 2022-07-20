@@ -4,6 +4,7 @@ import 'package:food_delivery_application/controllers/popular_product_controller
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/data/repositories/recommended_product_repo.dart';
 import 'package:food_delivery_application/routes.dart';
+import 'package:food_delivery_application/screens/cart_items_page/cart_items.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/themes/theme.dart';
 import 'package:get/get.dart';
@@ -35,12 +36,12 @@ class MyApp extends StatelessWidget {
           theme: appThemeData[AppTheme.Light],
           debugShowCheckedModeBanner: false,
           title: 'Food Delivery Application || Flutter Firebase || Flutter',
-          // home: child,
-          initialRoute: AppRoutes.initial,
-          getPages: AppRoutes.routes,
+          home: child,
+          // initialRoute: AppRoutes.initial,
+          // getPages: AppRoutes.routes,
         );
       },
-      // child: FoodHomePage(),
+      child: CartPage(),
     );
   }
 }

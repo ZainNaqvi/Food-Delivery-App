@@ -51,14 +51,18 @@ class _PopularProductPageState extends State<PopularProductPage> {
                         shape: BoxShape.circle,
                         color: Colors.teal,
                       ),
-                      child: Center(
-                          child: Text(
-                        Get.find<PopularProductController>()
-                            .totalItems
-                            .toString(),
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w500),
-                      )),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          Get.find<PopularProductController>()
+                              .totalItems
+                              .toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     )
                   : Container(),
             ),
