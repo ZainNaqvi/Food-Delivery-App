@@ -36,12 +36,12 @@ class MyApp extends StatelessWidget {
           theme: appThemeData[AppTheme.Light],
           debugShowCheckedModeBanner: false,
           title: 'Food Delivery Application || Flutter Firebase || Flutter',
-          home: child,
-          // initialRoute: AppRoutes.initial,
-          // getPages: AppRoutes.routes,
+          // home: child,
+          initialRoute: AppRoutes.initial,
+          getPages: AppRoutes.routes,
         );
       },
-      child: CartPage(),
+      // child: CartPage(),
     );
   }
 }

@@ -38,6 +38,7 @@ class _PopularProductPageState extends State<PopularProductPage> {
           headerAppIcon(context),
           // Detail of the popular product
           detailProduct(context, product),
+          // cart notification items
           GetBuilder<PopularProductController>(
             builder: (value) => Positioned(
               top: 38.h,
