@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
-import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
 import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
-import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
-import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:get/get.dart';
 import '../../widgets/dotindicator.dart';
@@ -133,7 +130,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
           shrinkWrap: true,
           itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Get.toNamed(AppRoutes.getRecommendedPage(index));
+                  Get.toNamed(
+                      AppRoutes.getRecommendedPage(index, 'recommended-page'));
                 },
                 child: value.isLoading
                     ? Container(
@@ -238,7 +236,8 @@ class _FoodHomePageState extends State<FoodHomePage> {
     return InkWell(
       onTap: () {
         print("Index is : $itemIndex");
-        Get.toNamed(AppRoutes.getPopularPage(itemIndex));
+        Get.toNamed(
+            AppRoutes.getPopularPage(itemIndex, 'popular-product-page'));
       },
       child: Transform(
         transform: matrix4,

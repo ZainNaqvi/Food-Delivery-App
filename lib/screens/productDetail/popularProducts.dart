@@ -12,7 +12,9 @@ import 'components/detailProduct.dart';
 
 class PopularProductPage extends StatefulWidget {
   int itemIndex;
-  PopularProductPage({Key? key, required this.itemIndex}) : super(key: key);
+  String page;
+  PopularProductPage({Key? key, required this.itemIndex, required this.page})
+      : super(key: key);
 
   @override
   State<PopularProductPage> createState() => _PopularProductPageState();
@@ -21,8 +23,7 @@ class PopularProductPage extends StatefulWidget {
 class _PopularProductPageState extends State<PopularProductPage> {
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<PopularProductController>()
+    var product = Get.find<PopularProductController>()
         .PopularProductListData[widget.itemIndex];
     Get.find<PopularProductController>()
         .setInitQuantity(product, Get.find<CartProductController>());
@@ -35,7 +36,7 @@ class _PopularProductPageState extends State<PopularProductPage> {
           // Header for the image
           header(product.img!),
           // for the two icons at the top of the image
-          headerAppIcon(context),
+          headerAppIcon(context, widget.page),
           // Detail of the popular product
           detailProduct(context, product),
           // cart notification items
@@ -125,7 +126,6 @@ class _PopularProductPageState extends State<PopularProductPage> {
                   setState(() {
                     value.addItem(product);
                   });
-                
                 },
                 child: Container(
                   padding: EdgeInsets.all(18.r),

@@ -5,7 +5,7 @@ import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/cart_items_page/cart_items.dart';
 import 'package:get/get.dart';
 
-Positioned headerAppIcon(BuildContext context) {
+Positioned headerAppIcon(BuildContext context, String page) {
   return Positioned(
     left: 18.w,
     right: 18.w,
@@ -15,7 +15,11 @@ Positioned headerAppIcon(BuildContext context) {
       children: [
         InkWell(
           onTap: () {
-            Get.toNamed(AppRoutes.initial);
+            if (page == "cart-page") {
+              Get.toNamed(AppRoutes.getCartPage());
+            } else {
+              Get.toNamed(AppRoutes.getInitialPage());
+            }
             // Get.back();
           },
           child: Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
+import 'package:food_delivery_application/controllers/popular_product_controller.dart';
+import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
@@ -73,16 +75,35 @@ class CartPage extends StatelessWidget {
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Row(
                         children: [
-                          Container(
-                            width: 20 * 5.w,
-                            height: 20 * 5.h,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(AppConstants.APP_BASEURL +
-                                    "/uploads/" +
-                                    value.getItems[index].img!),
+                          GestureDetector(
+                            onTap: () {
+                              var productIndex =
+                                  Get.find<PopularProductController>()
+                                      .PopularProductListData
+                                      .indexOf(value.getItems[index].product);
+                              if (productIndex >= 0) {
+                                Get.toNamed(AppRoutes.getPopularPage(
+                                    productIndex, "cart-page"));
+                              } else {
+                                var productIndex =
+                                    Get.find<RecommendedProductController>()
+                                        .RecommendedProductListData
+                                        .indexOf(value.getItems[index].product);
+                                Get.toNamed(AppRoutes.getRecommendedPage(
+                                    productIndex, 'cart-page'));
+                              }
+                            },
+                            child: Container(
+                              width: 20 * 5.w,
+                              height: 20 * 5.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.r),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(AppConstants.APP_BASEURL +
+                                      "/uploads/" +
+                                      value.getItems[index].img!),
+                                ),
                               ),
                             ),
                           ),
@@ -171,6 +192,62 @@ class CartPage extends StatelessWidget {
               ),
             ))
       ]),
+      bottomNavigationBar: GetBuilder<CartProductController>(
+        builder: (value) => Container(
+          width: double.maxFinite,
+          height: 90.h,
+          decoration: BoxDecoration(
+            color: Theme.of(context).buttonColor,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40.r),
+              topRight: Radius.circular(40.r),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                padding: EdgeInsets.all(12.r),
+                width: 110.w,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.r),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "\$ ${value.totalPrice}",
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.all(18.r),
+                  margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  width: 180.w,
+                  decoration: BoxDecoration(
+                    color: Colors.teal,
+                    borderRadius: BorderRadius.circular(20.r),
+                  ),
+                  child: Text(
+                    "!Check Out",
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

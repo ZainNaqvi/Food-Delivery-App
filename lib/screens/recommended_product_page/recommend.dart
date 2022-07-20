@@ -18,7 +18,10 @@ import '../productDetail/components/headerAppIcon.dart';
 
 class RecommendedProductPage extends StatefulWidget {
   int itemIndex;
-  RecommendedProductPage({Key? key, required this.itemIndex}) : super(key: key);
+  String page;
+  RecommendedProductPage(
+      {Key? key, required this.itemIndex, required this.page})
+      : super(key: key);
 
   @override
   State<RecommendedProductPage> createState() => _RecommendedProductPageState();
@@ -52,7 +55,11 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.toNamed(AppRoutes.initial);
+                            if (widget.page == "cart-page") {
+                              Get.toNamed(AppRoutes.getCartPage());
+                            } else {
+                              Get.toNamed(AppRoutes.getInitialPage());
+                            }
                             // Get.back();
                           },
                           child: Container(
@@ -92,8 +99,7 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                               ),
                             ),
                           );
-                        }
-                        ),
+                        }),
                       ],
                     ),
                   ),
@@ -101,27 +107,26 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                     builder: (value) => Positioned(
                       top: 38.h,
                       right: -5.w,
-                      child:
-                      value.totalItems >= 1
-                              ? AnimatedContainer(
-                                  duration: Duration(milliseconds: 300),
-                                  width: 24.w,
-                                  height: 24.h,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.teal,
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    Get.find<PopularProductController>()
-                                        .totalItems
-                                        .toString(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  )),
-                                )
-                              : Container(),
+                      child: value.totalItems >= 1
+                          ? AnimatedContainer(
+                              duration: Duration(milliseconds: 300),
+                              width: 24.w,
+                              height: 24.h,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.teal,
+                              ),
+                              child: Center(
+                                  child: Text(
+                                Get.find<PopularProductController>()
+                                    .totalItems
+                                    .toString(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500),
+                              )),
+                            )
+                          : Container(),
                     ),
                   ),
                 ],

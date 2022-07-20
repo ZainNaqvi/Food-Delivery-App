@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Food Delivery Application || Flutter Firebase || Flutter',
           // home: child,
-          initialRoute: AppRoutes.initial,
+          initialRoute: AppRoutes.getInitialPage(),
           getPages: AppRoutes.routes,
         );
       },
