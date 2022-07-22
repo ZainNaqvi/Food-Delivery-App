@@ -53,7 +53,7 @@ class _RecommendedProductPageState extends State<RecommendedProductPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
                             if (widget.page == "cart-page") {
                               Get.toNamed(AppRoutes.getCartPage());

@@ -128,7 +128,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
           physics: NeverScrollableScrollPhysics(),
           itemCount: value.RecommendedProductListData.length,
           shrinkWrap: true,
-          itemBuilder: (context, index) => InkWell(
+          itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
                   Get.toNamed(
                       AppRoutes.getRecommendedPage(index, 'recommended-page'));
@@ -233,7 +233,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
       matrix4 = Matrix4.diagonal3Values(1, currentScale, 1)
         ..setTranslationRaw(0, 220.h * (1 - _scaleFactor) / 2, 1);
     }
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         print("Index is : $itemIndex");
         Get.toNamed(

@@ -13,7 +13,7 @@ Positioned headerAppIcon(BuildContext context, String page) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        InkWell(
+        GestureDetector(
           onTap: () {
             if (page == "cart-page") {
               Get.toNamed(AppRoutes.getCartPage());

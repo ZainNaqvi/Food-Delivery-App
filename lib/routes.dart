@@ -4,14 +4,17 @@ import 'package:food_delivery_application/screens/food_home_page/food_home_page.
 import 'package:food_delivery_application/screens/mainpage.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';
+import 'package:food_delivery_application/screens/splash_page/splash_screen.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
+  static String splash = "/splash";
   static String initial = "/";
   static const String popularFoodPage = "/popular-Food-Page";
   static const String recommendFoodPage = "/recommended-Food-Page";
   static const String cartPage = "/cart-page";
 
+  static String getSplash() => "${splash}";
   static String getInitialPage() => "${initial}";
   static String getPopularPage(int pageID, String page) =>
       "$popularFoodPage?pageId=$pageID&page=$page";
@@ -20,6 +23,11 @@ class AppRoutes {
   static String getCartPage() => "$cartPage";
 
   static List<GetPage> routes = [
+    GetPage(
+      name: splash,
+      page: () => SplashScreen(),
+      transition: Transition.leftToRightWithFade,
+    ),
     GetPage(
       name: "/",
       page: () => MainPage(),

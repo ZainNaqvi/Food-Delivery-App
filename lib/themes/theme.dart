@@ -11,6 +11,7 @@ import '../constants.dart';
 enum AppTheme { Dark, Light }
 
 final Map<AppTheme, ThemeData> appThemeData = {
+  // Dark Theme
   AppTheme.Dark: ThemeData.dark().copyWith(
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
@@ -135,6 +136,7 @@ final Map<AppTheme, ThemeData> appThemeData = {
       secondary: kDarkAccent,
     ),
   ),
+  // Light Theme
   AppTheme.Light: ThemeData.light().copyWith(
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
