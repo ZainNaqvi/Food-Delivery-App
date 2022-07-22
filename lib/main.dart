@@ -25,17 +25,21 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        Get.find<PopularProductController>().getPopularProductList();
-        Get.find<RecommendedProductController>().getRecommendedProductList();
-        return GetMaterialApp(
-          themeMode: ThemeMode.system,
-          darkTheme: appThemeData[AppTheme.Dark],
-          theme: appThemeData[AppTheme.Light],
-          debugShowCheckedModeBanner: false,
-          title: 'Food Delivery Application || Flutter Firebase || Flutter',
-          // home: child,
-          initialRoute: AppRoutes.getSplash(),
-          getPages: AppRoutes.routes,
+
+        return GetBuilder<PopularProductController>(builder: (_) {
+          return GetBuilder<RecommendedProductController>(builder: (_) {
+            return GetMaterialApp(
+              themeMode: ThemeMode.system,
+              darkTheme: appThemeData[AppTheme.Dark],
+              theme: appThemeData[AppTheme.Light],
+              debugShowCheckedModeBanner: false,
+              title: 'Food Delivery Application || Flutter Firebase || Flutter',
+              // home: child,
+              initialRoute: AppRoutes.getSplash(),
+              getPages: AppRoutes.routes,
+            );
+          });
+        }
         );
       },
       // child: SplashScreen(),
