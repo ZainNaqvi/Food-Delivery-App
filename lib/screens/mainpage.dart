@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/screens/cart_history_page/cart_history.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +17,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text("Container"),
     ),
-    Center(
-      child: Text("Container"),
-    ),
+CartHistoryPage(),
     Center(
       child: Text("Container"),
     )
@@ -52,11 +51,11 @@ class _MainPageState extends State<MainPage> {
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history_outlined),
+              icon: Icon(Icons.shopping_cart_outlined),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
+              icon: Icon(Icons.person_outline_outlined),
               label: "",
             ),
           ]),
