@@ -20,6 +20,7 @@ class CartHistoryPage extends StatelessWidget {
         cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
     }
+    var listCounter = 0;
     return Scaffold(
       body: Column(
         children: [
@@ -52,7 +53,34 @@ class CartHistoryPage extends StatelessWidget {
               width: double.maxFinite,
               child: ListView(
                 children: [
-                  for (int i = 0; i <= 10; i++) Text("HIther"),
+                  for (int i = 0; i < cartItemsPerOrder.length; i++)
+                    Container(
+                      margin: EdgeInsets.only(bottom: 8.h),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "05/56/5/6/56/",
+                              style: Theme.of(context).textTheme.headline5,
+                            ),
+                            Row(
+                              children: [
+                                Wrap(
+                                  direction: Axis.horizontal,
+                                  children: List.generate(
+                                      cartItemsPerOrder[i] != null
+                                          ? cartItemsPerOrder[i]!
+                                          : 4,
+                                      (index) => Container(
+                                            height: 40.h,
+                                            child: Text(' ddsfadf '),
+                                          )),
+                                ),
+                              ],
+                            ),
+                          ]),
+                    ),
                 ],
               ),
             ),
