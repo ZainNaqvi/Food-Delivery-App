@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/routes.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-
+        Get.find<CartProductController>().getCartData();
         return GetBuilder<PopularProductController>(builder: (_) {
           return GetBuilder<RecommendedProductController>(builder: (_) {
             return GetMaterialApp(
@@ -39,8 +40,7 @@ class MyApp extends StatelessWidget {
               getPages: AppRoutes.routes,
             );
           });
-        }
-        );
+        });
       },
       // child: SplashScreen(),
     );

@@ -8,6 +8,8 @@ class CartProductController extends GetxController {
   CartProductController({required this.cartProductRepo});
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
+  // for the storage methods only
+  List<CartModel> storageItems = [];
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id!)) {
@@ -45,6 +47,9 @@ class CartProductController extends GetxController {
         Get.snackbar("Message", "You should add at least an item to the cart");
       }
     }
+    // shared preference
+    cartProductRepo.addToCartList(getItems);
+    // shared preference
     update();
   }
 
@@ -87,5 +92,18 @@ class CartProductController extends GetxController {
       total += value.quantity! * value.price!;
     });
     return total;
+  }
+
+  List<CartModel> getCartData() {
+    setItems = cartProductRepo.getCartList();
+    return storageItems;
+  }
+
+  set setItems(List<CartModel> items) {
+    storageItems = items;
+    print("The items in database legth is " + storageItems.length.toString());
+    for (var i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
   }
 }

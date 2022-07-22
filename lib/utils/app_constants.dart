@@ -7,5 +7,7 @@ class AppConstants {
   static const String POPULAR_PRODUCT_URI = "api/v1/products/popular";
   static const String RECOMMENDED_PRODUCT_URI = "api/v1/products/recommended";
   static const String APP_TOKEN = "myappToken";
+  static const String SP_KEY = "cart-list";
+
 }
 // http://mvs.bslmeiyu.com/api/v1/products/popular
