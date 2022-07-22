@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
+import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:get/get.dart';
 
@@ -49,13 +50,13 @@ class CartHistoryPage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(top: 8.h, left: 12.w, right: 12.w),
+              margin: EdgeInsets.only(top: 34.h, left: 12.w, right: 12.w),
               width: double.maxFinite,
               child: ListView(
                 children: [
                   for (int i = 0; i < cartItemsPerOrder.length; i++)
                     Container(
-                      margin: EdgeInsets.only(bottom: 8.h),
+                      margin: EdgeInsets.only(bottom: 16.h),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -71,11 +72,24 @@ class CartHistoryPage extends StatelessWidget {
                                   children: List.generate(
                                       cartItemsPerOrder[i] != null
                                           ? cartItemsPerOrder[i]!
-                                          : 4,
-                                      (index) => Container(
-                                            height: 40.h,
-                                            child: Text(' ddsfadf '),
-                                          )),
+                                          : 4, (index) {
+                                    if (listCounter <
+                                        getCartHistoryList.length) {
+                                      listCounter++;
+                                    }
+                                    return Container(
+                                      height: 80.h,
+                                      width: 80,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  AppConstants.APP_BASEURL +
+                                                      "/uploads/" +
+                                                      getCartHistoryList[
+                                                              listCounter - 1]
+                                                          .img!))),
+                                    );
+                                  }),
                                 ),
                               ],
                             ),
