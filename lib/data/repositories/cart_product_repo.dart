@@ -12,11 +12,14 @@ class CartProductRepo {
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
-    sharedPreferences.remove(AppConstants.SP_KEY);
-    sharedPreferences.remove(AppConstants.CART_HISTORY);
+    // sharedPreferences.remove(AppConstants.SP_KEY);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY);
+
+    var time = DateTime.now().toString();
     cart = [];
     // Converting the object to the strings for saving it in the shared preference database in the phone local storage
     cartList.forEach((element) {
+      element.time = time;
       return cart.add(jsonEncode(element));
     });
     // for saving it in shared preference we have
@@ -55,12 +58,16 @@ class CartProductRepo {
       cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY)!;
     }
     for (var i = 0; i < cart.length; i++) {
-      print("cart history" + cart[i]);
+
       cartHistory.add(cart[i]);
     }
     removeCart();
     sharedPreferences.setStringList(AppConstants.CART_HISTORY, cartHistory);
     print("total history items" + getCartHistoryList().length.toString());
+    for (var i = 0; i < getCartHistoryList().length; i++) {
+      print("the time of item" + getCartHistoryList()[i].time.toString());
+    }
+
   }
 
   void removeCart() {
