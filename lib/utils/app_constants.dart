@@ -8,6 +8,7 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_URI = "api/v1/products/recommended";
   static const String APP_TOKEN = "myappToken";
   static const String SP_KEY = "cart-list";
+  static const String CART_HISTORY = "cart-history";
 
 }
 // http://mvs.bslmeiyu.com/api/v1/products/popular
