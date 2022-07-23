@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/Auth/sign_up_page.dart';
 import 'package:food_delivery_application/screens/cart_history_page/cart_history.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/screens/profile/profile.dart';
@@ -15,11 +16,9 @@ class _MainPageState extends State<MainPage> {
   var selectedPage = 0;
   final List _pages = [
     FoodHomePage(),
-    Center(
-      child: Text("Container"),
-    ),
+    SignUp(),
     CartHistoryPage(),
-ProfileScreen(),
+    ProfileScreen(),
   ];
   onTap(int index) {
     setState(() {
