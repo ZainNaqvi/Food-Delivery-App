@@ -41,6 +41,17 @@ class CartHistoryPage extends StatelessWidget {
 
     List<int> itemPerOrder = cartOrderTimeToList();
     var listCounter = 0;
+    Widget timeWidget(int index) {
+      var outPutDate = DateTime.now().toString();
+      if (index < getCartHistoryList.length) {
+        DateTime parseDate = DateFormat("yyyy-MM-dd HH:mm:ss")
+            .parse(getCartHistoryList[listCounter].time!);
+        var inputDate = DateTime.parse(parseDate.toString());
+        var date = DateFormat("MM/dd/yyyy hh:mm a");
+        outPutDate = date.format(inputDate);
+      }
+      return Text(outPutDate, style: Theme.of(context).textTheme.headline5);
+    }
     return Scaffold(
       body: Column(
         children: [
@@ -88,22 +99,7 @@ class CartHistoryPage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      (() {
-                                        DateTime parseDate = DateFormat(
-                                                "yyyy-MM-dd HH:mm:ss")
-                                            .parse(
-                                                getCartHistoryList[listCounter]
-                                                    .time!);
-                                        var inputDate = DateTime.parse(
-                                            parseDate.toString());
-                                        var date =
-                                            DateFormat("MM/dd/yyyy hh:mm a");
-                                        var outPutDate = date.format(inputDate);
-                                        return Text(outPutDate,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline5);
-                                      }()),
+                                      timeWidget(listCounter),
                                       Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
