@@ -6,18 +6,23 @@ Widget AppIcons({
   Color backgrounColor = Colors.grey,
   IconData iconData = Icons.remove,
   Color iconColor = Colors.black,
+  double size = 24.0,
+  double width = 44,
+  double height = 44,
 }) {
   return Container(
-    width: 44.w,
-    height: 44.h,
+    width: width.w,
+    height: height.h,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
       color: backgrounColor,
     ),
     child: Center(
       child: Icon(
+        size: size,
         iconData,
         color: iconColor,
+        
       ),
     ),
   );

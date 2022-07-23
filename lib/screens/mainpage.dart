@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_application/screens/cart_history_page/cart_history.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
+import 'package:food_delivery_application/screens/profile/profile.dart';
 import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
@@ -18,9 +19,7 @@ class _MainPageState extends State<MainPage> {
       child: Text("Container"),
     ),
     CartHistoryPage(),
-    Center(
-      child: Text("Container"),
-    )
+ProfileScreen(),
   ];
   onTap(int index) {
     setState(() {
