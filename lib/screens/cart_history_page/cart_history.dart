@@ -4,14 +4,18 @@ import 'package:food_delivery_application/controllers/cart_product_controller.da
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:intl/intl.dart';
 
 class CartHistoryPage extends StatelessWidget {
   const CartHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var getCartHistoryList =
-        Get.find<CartProductController>().getCartHistoryList();
+    var getCartHistoryList = Get.find<CartProductController>()
+        .getCartHistoryList()
+        .reversed
+        .toList();
     Map<String, int> cartItemsPerOrder = {};
     for (var i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
@@ -66,30 +70,36 @@ class CartHistoryPage extends StatelessWidget {
                     for (int i = 0; i < cartItemsPerOrder.length; i++)
                       Container(
                         height: 120.h,
-                        margin: EdgeInsets.only(bottom: 8.h),
+                        margin:
+                            EdgeInsets.only(bottom: 8.h, left: 4.w, right: 4.w),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                  getCartHistoryList[listCounter]
-                                      .time
-                                      .toString(),
-                                  style: Theme.of(context).textTheme.headline5),
+                              (() {
+                                DateTime parseDate =
+                                    DateFormat("yyyy-MM-dd HH:mm:ss").parse(
+                                        getCartHistoryList[listCounter].time!);
+                                var inputDate =
+                                    DateTime.parse(parseDate.toString());
+                                var date = DateFormat("MM/dd/yyyy hh:mm a");
+                                var outPutDate = date.format(inputDate);
+                                return Text(outPutDate,
+                                    style:
+                                        Theme.of(context).textTheme.headline5);
+                              }()),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Wrap(
-                                   
-
                                     direction: Axis.horizontal,
                                     children:
                                         List.generate(itemPerOrder[i], (index) {
                                       if (listCounter <
                                           getCartHistoryList.length) {
-                                        print(cartItemsPerOrder[i]);
+                                        // print(cartItemsPerOrder[i]);
 
                                         listCounter++;
                                       }
@@ -147,7 +157,11 @@ class CartHistoryPage extends StatelessWidget {
                                                   width: 1,
                                                   color: Colors.teal,
                                                   style: BorderStyle.solid)),
-                                          child: Text("one more"),
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                Get.toNamed(page);
+                                              },
+                                              child: Text("one more")),
                                         ),
                                       ],
                                     ),

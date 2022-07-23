@@ -63,9 +63,9 @@ class CartProductRepo {
     }
     removeCart();
     sharedPreferences.setStringList(AppConstants.CART_HISTORY, cartHistory);
-    print("total history items" + getCartHistoryList().length.toString());
+    // print("total history items" + getCartHistoryList().length.toString());
     for (var i = 0; i < getCartHistoryList().length; i++) {
-      print("the time of item" + getCartHistoryList()[i].time.toString());
+      // print("the time of item" + getCartHistoryList()[i].time.toString());
     }
 
   }
