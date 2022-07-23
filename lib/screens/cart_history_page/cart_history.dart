@@ -52,6 +52,7 @@ class CartHistoryPage extends StatelessWidget {
       }
       return Text(outPutDate, style: Theme.of(context).textTheme.headline5);
     }
+
     return Scaffold(
       body: Column(
         children: [
@@ -80,7 +81,7 @@ class CartHistoryPage extends StatelessWidget {
           ),
           GetBuilder<CartProductController>(builder: (value) {
             return Expanded(
-              child: value.getItems.isNotEmpty
+              child: value.getCartHistoryList().isNotEmpty
                   ? Container(
                       margin: EdgeInsets.only(top: 8.h, left: 4.w, right: 4.w),
                       width: double.maxFinite,
@@ -231,8 +232,7 @@ class CartHistoryPage extends StatelessWidget {
                       text: "Cart history is empty!",
                       imageData: "assets/images/cart-history.jpg"),
             );
-          }
-          ),
+          }),
         ],
       ),
     );
