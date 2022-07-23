@@ -12,7 +12,7 @@ class CartHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var getCartHistoryList =
         Get.find<CartProductController>().getCartHistoryList();
-    Map<String, int> cartItemsPerOrder = Map();
+    Map<String, int> cartItemsPerOrder = {};
     for (var i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
         cartItemsPerOrder.update(
@@ -21,14 +21,20 @@ class CartHistoryPage extends StatelessWidget {
         cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
     }
+
+    List<int> cartOrderTimeToList() {
+      return cartItemsPerOrder.entries.map((e) => e.value).toList();
+    }
+
+    List<int> itemPerOrder = cartOrderTimeToList();
     var listCounter = 0;
     return Scaffold(
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 8.h),
+            padding: EdgeInsets.only(top: 16.h),
             width: double.maxFinite,
-            height: 70.h,
+            height: 80.h,
             decoration: BoxDecoration(color: Colors.teal),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -50,52 +56,108 @@ class CartHistoryPage extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(top: 34.h, left: 12.w, right: 12.w),
+              margin: EdgeInsets.only(top: 8.h, left: 4.w, right: 4.w),
               width: double.maxFinite,
-              child: ListView(
-                children: [
-                  for (int i = 0; i < cartItemsPerOrder.length; i++)
-                    Container(
-                      margin: EdgeInsets.only(bottom: 16.h),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "05/56/5/6/56/",
-                              style: Theme.of(context).textTheme.headline5,
-                            ),
-                            Row(
-                              children: [
-                                Wrap(
-                                  direction: Axis.horizontal,
-                                  children: List.generate(
-                                      cartItemsPerOrder[i] != null
-                                          ? cartItemsPerOrder[i]!
-                                          : 4, (index) {
-                                    if (listCounter <
-                                        getCartHistoryList.length) {
-                                      listCounter++;
-                                    }
-                                    return Container(
-                                      height: 80.h,
-                                      width: 80,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  AppConstants.APP_BASEURL +
-                                                      "/uploads/" +
-                                                      getCartHistoryList[
-                                                              listCounter - 1]
-                                                          .img!))),
-                                    );
-                                  }),
-                                ),
-                              ],
-                            ),
-                          ]),
-                    ),
-                ],
+              child: MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: ListView(
+                  children: [
+                    for (int i = 0; i < cartItemsPerOrder.length; i++)
+                      Container(
+                        height: 120.h,
+                        margin: EdgeInsets.only(bottom: 8.h),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                  getCartHistoryList[listCounter]
+                                      .time
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.headline5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Wrap(
+                                   
+
+                                    direction: Axis.horizontal,
+                                    children:
+                                        List.generate(itemPerOrder[i], (index) {
+                                      if (listCounter <
+                                          getCartHistoryList.length) {
+                                        print(cartItemsPerOrder[i]);
+
+                                        listCounter++;
+                                      }
+                                      return index <= 2
+                                          ? Container(
+                                              height: 80.h,
+                                              width: 80.w,
+                                              margin:
+                                                  EdgeInsets.only(right: 8.w),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.r),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          AppConstants
+                                                                  .APP_BASEURL +
+                                                              "/uploads/" +
+                                                              getCartHistoryList[
+                                                                      listCounter -
+                                                                          1]
+                                                                  .img!))),
+                                            )
+                                          : Container();
+                                    }),
+                                  ),
+                                  Container(
+                                    // color: Colors.red,
+                                    height: 80.h,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "Total",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6,
+                                        ),
+                                        Text(
+                                          itemPerOrder[i].toString() + " Items",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5.w),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.r),
+                                              border: Border.all(
+                                                  width: 1,
+                                                  color: Colors.teal,
+                                                  style: BorderStyle.solid)),
+                                          child: Text("one more"),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ]),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text("Container"),
     ),
-CartHistoryPage(),
+    CartHistoryPage(),
     Center(
       child: Text("Container"),
     )
