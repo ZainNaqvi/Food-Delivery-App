@@ -7,6 +7,7 @@ import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/food_home_page/components/header.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
+import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
 import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
@@ -78,10 +79,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
                                   vertical: MediaQuery.of(context).size.height *
                                       0.40),
                               child: Center(
-                                child: CupertinoActivityIndicator(
-                                  color: Colors.teal,
-                                  radius: 50,
-                                ),
+                                child: CircleIndicator(),
                               ),
                             ),
                     ),
@@ -125,7 +123,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
   Widget productList() {
     return GetBuilder<RecommendedProductController>(
       builder: (value) => ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           itemCount: value.RecommendedProductListData.length,
           shrinkWrap: true,
           itemBuilder: (context, index) => GestureDetector(

@@ -2,17 +2,32 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/Auth/sign_in_page.dart';
+import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dart';
+import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
 
 import '../widgets/customInputField.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   SignUp({Key? key}) : super(key: key);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   final _userEmailController = TextEditingController();
+
   final _userPasswordController = TextEditingController();
+
   final _userNameController = TextEditingController();
+
   final _userPhoneController = TextEditingController();
-  regesterUser() {
+
+  // firebase instance
+  bool isLoading = false;
+
+  regesterUser() async {
     final name = _userNameController.text.trim();
     final email = _userEmailController.text.trim();
     final password = _userPasswordController.text.trim();
@@ -39,7 +54,26 @@ class SignUp extends StatelessWidget {
       Get.snackbar("Message", "Type a valid phone number.",
           backgroundColor: Colors.red.withOpacity(0.2));
     } else {
-      Get.snackbar("Message", "Perfect");
+setState(() {
+        isLoading = true;
+      });
+      String res = await AuthUser().createUser(
+        email: email,
+        password: password,
+        phone: phone,
+        name: name,
+      );
+      if (res == 'success') {
+        Get.snackbar("Message", res);
+        setState(() {
+          isLoading = false;
+        });
+      } else {
+        Get.snackbar("Message", res);
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -83,6 +117,7 @@ class SignUp extends StatelessWidget {
                       iconData: Icons.phone_outlined,
                     ),
                     SizedBox(height: 22.h),
+                    CircleIndicator(),
                     GestureDetector(
                       onTap: () {
                         regesterUser();
