@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
+
+import '../../Auth/sign_in_page.dart';
 
 class NoData extends StatelessWidget {
   final String text;
   final String imageData;
-  const NoData(
-      {Key? key,
-      this.imageData = 'assets/images/no-data.png',
-      required this.text})
-      : super(key: key);
+  final bool yes;
+  const NoData({
+    Key? key,
+    this.imageData = 'assets/images/no-data.png',
+    required this.text,
+    this.yes = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +41,38 @@ class NoData extends StatelessWidget {
           ),
           SizedBox(height: 0.h),
           SizedBox(height: 8.h),
+          yes
+              ? Container(
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 74.w, vertical: 74.h),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        Signin(),
+                        transition: Transition.leftToRightWithFade,
+                      );
+                    },
+                    child: Container(
+                      width: 100.w,
+                      height: 80.h,
+                      decoration: BoxDecoration(
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(30.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Sign in",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24.sp,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

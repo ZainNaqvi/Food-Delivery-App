@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         Get.find<CartProductController>().getCartData();
-
+        Get.find<GetUserData>().getUserData();
         return GetBuilder<PopularProductController>(builder: (_) {
           return GetBuilder<RecommendedProductController>(builder: (_) {
             return Builder(builder: (context) {

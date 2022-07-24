@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
 import 'package:food_delivery_application/screens/no_data/no_cart_page.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
@@ -23,7 +24,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<GetUserData>().getUserData();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -39,7 +39,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: GetBuilder<GetUserData>(builder: (value) {
         return FirebaseAuth.instance.currentUser == null
-            ? NoData(text: "No")
+            ? NoData(
+                text: "No",
+                yes: true,
+              )
+                   
+               
             : value.isLoading
                 ? Center(child: CircleIndicator())
                 : Container(
@@ -97,8 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   );
-      }
-      ),
+      }),
     );
   }
 

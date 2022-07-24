@@ -19,9 +19,10 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> animation;
   late AnimationController _controller;
   _loadData() async {
-    await Get.find<GetUserData>().getUserData();
+
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
+    Get.find<GetUserData>().getUserData();
   }
 
   @override
