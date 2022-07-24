@@ -9,6 +9,7 @@ import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/splash_page/splash_screen.dart';
 import 'package:food_delivery_application/themes/theme.dart';
 import 'package:get/get.dart';
+import 'controllers/getuserData.dart';
 import 'helper/dependency.dart' as dep;
 
 void main() async {
@@ -42,17 +43,22 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         Get.find<CartProductController>().getCartData();
+
         return GetBuilder<PopularProductController>(builder: (_) {
           return GetBuilder<RecommendedProductController>(builder: (_) {
-            return GetMaterialApp(
-              themeMode: ThemeMode.system,
-              darkTheme: appThemeData[AppTheme.Dark],
-              theme: appThemeData[AppTheme.Light],
-              debugShowCheckedModeBanner: false,
-              title: 'Food Delivery Application || Flutter Firebase || Flutter',
-              // home: child,
-              initialRoute: AppRoutes.getSplash(),
-              getPages: AppRoutes.routes,
+            return Builder(builder: (context) {
+              return GetMaterialApp(
+                themeMode: ThemeMode.system,
+                darkTheme: appThemeData[AppTheme.Dark],
+                theme: appThemeData[AppTheme.Light],
+                debugShowCheckedModeBanner: false,
+                title:
+                    'Food Delivery Application || Flutter Firebase || Flutter',
+                // home: child,
+                initialRoute: AppRoutes.getSplash(),
+                getPages: AppRoutes.routes,
+              );
+            }
             );
           });
         });
