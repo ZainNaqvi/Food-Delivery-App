@@ -87,10 +87,11 @@ class AuthUser {
         // now checking and login the user
         UserCredential credential = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
+
         print(credential.user!.uid);
         // if all set than responce will be success
         res = "success";
-        Get.snackbar("Message", res);
+
       } else {
         res = "All the Fields are required";
         Get.snackbar("Message", res);
