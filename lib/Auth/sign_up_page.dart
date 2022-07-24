@@ -12,6 +12,37 @@ class SignUp extends StatelessWidget {
   final _userPasswordController = TextEditingController();
   final _userNameController = TextEditingController();
   final _userPhoneController = TextEditingController();
+  regesterUser() {
+    final name = _userNameController.text.trim();
+    final email = _userEmailController.text.trim();
+    final password = _userPasswordController.text.trim();
+    final phone = _userPhoneController.text.trim();
+    if (email.isEmpty) {
+      Get.snackbar("Message", "Type in your email.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (password.isEmpty) {
+      Get.snackbar("Message", "Type in your password.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (!GetUtils.isEmail(email)) {
+      Get.snackbar("Message", "Type a valid email address.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (name.isEmpty) {
+      Get.snackbar("Message", "Type in your name.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (password.length < 6) {
+      Get.snackbar("Message", "Password must at least 6 digits.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (phone.isEmpty) {
+      Get.snackbar("Message", "Type in your phone.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else if (!GetUtils.isPhoneNumber(phone)) {
+      Get.snackbar("Message", "Type a valid phone number.",
+          backgroundColor: Colors.red.withOpacity(0.2));
+    } else {
+      Get.snackbar("Message", "Perfect");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,20 +83,25 @@ class SignUp extends StatelessWidget {
                       iconData: Icons.phone_outlined,
                     ),
                     SizedBox(height: 22.h),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: MediaQuery.of(context).size.height / 13,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.r),
-                        color: Colors.teal,
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Sign up",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w500,
+                    GestureDetector(
+                      onTap: () {
+                        regesterUser();
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 2,
+                        height: MediaQuery.of(context).size.height / 13,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.r),
+                          color: Colors.teal,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),

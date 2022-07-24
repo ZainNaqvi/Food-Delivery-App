@@ -1,4 +1,9 @@
 import 'dart:typed_data';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food_delivery_application/models/users.dart';
+import 'package:get/get.dart';
 // import 'package:flutter/material.dart';
 
 class AuthUser {
@@ -31,36 +36,28 @@ class AuthUser {
   Future<String> createUser({
     required String email,
     required String password,
-    required String bio,
-    required String fullName,
-    required String userName,
-    required Uint8List profilePic,
+    required String phone,
+    required String name,
   }) async {
-    String res = '';
+    String res = 'Some Error occured';
     try {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
-          bio.isNotEmpty ||
-          userName.isNotEmpty ||
-          fullName.isNotEmpty) {
+          name.isNotEmpty ||
+          phone.isNotEmpty) {
         // validation for authentication firebase authentification tab
 
         UserCredential creaditials = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
         // printing the user uid as we know the user id could'nt null
         print(creaditials.user!.uid);
-        // for storing the data like username, userpic and userphone number etc etc we have to call cloud database
-        String photoUrl = await StorageMethods()
-            .uploadImageToStorage("ProfilePics", profilePic, false);
-// importing the class user
+
         UserCreaditials userCreaditials = UserCreaditials(
-          bio: bio,
+          name: name,
           uid: creaditials.user!.uid,
-          fullName: fullName,
-          profilePic: photoUrl,
-          userName: userName,
-          followers: [],
-          following: [],
+          phone: phone,
+          email: email,
+          password: password,
         );
         // add user to the database
         await _firebaseFirestore
@@ -68,11 +65,14 @@ class AuthUser {
             .doc(creaditials.user!.uid)
             .set(userCreaditials.toJson());
         res = "success";
+        Get.snackbar("Message", "The data is successfully submited.");
       } else {
         res = "All Fields are Required";
+        Get.snackbar("Message", res);
       }
     } catch (err) {
       res = err.toString();
+      Get.snackbar("Message", res);
     }
     return res;
   }
@@ -90,15 +90,19 @@ class AuthUser {
         print(credential.user!.uid);
         // if all set than responce will be success
         res = "success";
+        Get.snackbar("Message", res);
       } else {
         res = "All the Fields are required";
+        Get.snackbar("Message", res);
       }
     } on FirebaseAuthException catch (err) {
       if (err.code == "wrong-password") {
         res = "Invalid Creaditials";
+        Get.snackbar("Message", res);
       }
     } catch (err) {
       res = err.toString();
+      Get.snackbar("Message", res);
     }
     return res;
   }
@@ -109,8 +113,10 @@ class AuthUser {
     try {
       await _auth.signOut();
       res = "Logout Done.";
+      Get.snackbar("Message", res);
     } catch (e) {
       res = e.toString();
+      Get.snackbar("Message", res);
     }
     return res;
   }
