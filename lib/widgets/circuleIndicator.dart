@@ -7,9 +7,9 @@ class CircleIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12.r),
-      width: 54.w,
-      height: 54.h,
+      padding: EdgeInsets.all(16.r),
+      width: 84.w,
+      height: 84.h,
       decoration: BoxDecoration(
         color: Colors.teal,
         shape: BoxShape.circle,

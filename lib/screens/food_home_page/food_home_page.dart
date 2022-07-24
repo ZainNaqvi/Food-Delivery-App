@@ -57,6 +57,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
             // starting of the page view builder
             Expanded(
               child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     GetBuilder<PopularProductController>(

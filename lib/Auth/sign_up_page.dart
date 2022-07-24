@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/Auth/sign_in_page.dart';
+import 'package:food_delivery_application/screens/mainpage.dart';
 import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class _SignUpState extends State<SignUp> {
       Get.snackbar("Message", "Type a valid phone number.",
           backgroundColor: Colors.red.withOpacity(0.2));
     } else {
-setState(() {
+      setState(() {
         isLoading = true;
       });
       String res = await AuthUser().createUser(
@@ -68,6 +69,10 @@ setState(() {
         setState(() {
           isLoading = false;
         });
+        Get.to(
+          MainPage(),
+          transition: Transition.cupertinoDialog,
+        );
       } else {
         Get.snackbar("Message", res);
         setState(() {
@@ -117,30 +122,31 @@ setState(() {
                       iconData: Icons.phone_outlined,
                     ),
                     SizedBox(height: 22.h),
-                    CircleIndicator(),
-                    GestureDetector(
-                      onTap: () {
-                        regesterUser();
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: MediaQuery.of(context).size.height / 13,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.r),
-                          color: Colors.teal,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Sign up",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w500,
+                    isLoading
+                        ? CircleIndicator()
+                        : GestureDetector(
+                            onTap: () {
+                              regesterUser();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width / 2,
+                              height: MediaQuery.of(context).size.height / 13,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.r),
+                                color: Colors.teal,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 8.h),
                     RichText(
                       text: TextSpan(
