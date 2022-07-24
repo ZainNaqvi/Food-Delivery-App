@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:food_delivery_application/Auth/sign_up_page.dart';
 import 'package:food_delivery_application/screens/cart_history_page/cart_history.dart';
 import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
@@ -16,7 +17,7 @@ class _MainPageState extends State<MainPage> {
   var selectedPage = 0;
   final List _pages = [
     FoodHomePage(),
-    SignUp(),
+    Signin(),
     CartHistoryPage(),
     ProfileScreen(),
   ];
@@ -31,8 +32,8 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: _pages[selectedPage],
       bottomNavigationBar: BottomNavigationBar(
-          selectedIconTheme: IconThemeData(color: Colors.teal),
-          unselectedIconTheme: IconThemeData(color: Colors.teal[100]),
+          selectedIconTheme: IconThemeData(color: Color(0xff5B73D0)),
+          unselectedIconTheme: IconThemeData(color: Color(0xffD0D1D7)),
           showSelectedLabels: false,
           showUnselectedLabels: false,
           selectedFontSize: 0.0,

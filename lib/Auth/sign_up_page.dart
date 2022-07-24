@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:get/get.dart';
 
 import '../widgets/customInputField.dart';
@@ -73,7 +74,10 @@ class SignUp extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.back(),
+                            ..onTap = () => Get.to(
+                                  Signin(),
+                                  transition: Transition.leftToRightWithFade,
+                                ),
                           text: "Have an account already",
                           style: Theme.of(context).textTheme.headline6),
                     ),
