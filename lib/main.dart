@@ -6,7 +6,6 @@ import 'package:food_delivery_application/controllers/cart_product_controller.da
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/routes.dart';
-import 'package:food_delivery_application/screens/splash_page/splash_screen.dart';
 import 'package:food_delivery_application/themes/theme.dart';
 import 'package:get/get.dart';
 import 'controllers/getuserData.dart';
@@ -17,7 +16,7 @@ void main() async {
   await dep.init();
   if (kIsWeb) {
     Firebase.initializeApp(
-      options: FirebaseOptions(
+      options: const FirebaseOptions(
         apiKey: "AIzaSyDltGLUbFB4AYstHJ0dhTAclGY7btWTW7o",
         projectId: "food-delivery-app-625e0",
         storageBucket: "food-delivery-app-625e0.appspot.com",

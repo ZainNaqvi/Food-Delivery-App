@@ -1,6 +1,4 @@
-import 'package:flutter/animation.dart';
 import 'package:food_delivery_application/screens/cart_items_page/cart_items.dart';
-import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
 import 'package:food_delivery_application/screens/mainpage.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
 import 'package:food_delivery_application/screens/recommended_product_page/recommend.dart';

@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this
+
 
 class Product {
   int? _totalSize;

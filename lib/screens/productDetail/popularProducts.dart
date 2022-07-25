@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
-import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/productDetail/components/header.dart';
 import 'package:food_delivery_application/screens/productDetail/components/headerAppIcon.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/bottomNavigation.dart';
 import 'components/detailProduct.dart';
 
 class PopularProductPage extends StatefulWidget {

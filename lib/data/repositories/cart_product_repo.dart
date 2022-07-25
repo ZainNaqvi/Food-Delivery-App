@@ -12,9 +12,11 @@ class CartProductRepo {
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
+    //For removing the data from shared preference uncommit the two lines below
     // sharedPreferences.remove(AppConstants.SP_KEY);
     // sharedPreferences.remove(AppConstants.CART_HISTORY);
 
+// ending
     var time = DateTime.now().toString();
     cart = [];
     // Converting the object to the strings for saving it in the shared preference database in the phone local storage
@@ -58,7 +60,6 @@ class CartProductRepo {
       cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY)!;
     }
     for (var i = 0; i < cart.length; i++) {
-
       cartHistory.add(cart[i]);
     }
     removeCart();
@@ -67,7 +68,6 @@ class CartProductRepo {
     for (var i = 0; i < getCartHistoryList().length; i++) {
       // print("the time of item" + getCartHistoryList()[i].time.toString());
     }
-
   }
 
   void removeCart() {

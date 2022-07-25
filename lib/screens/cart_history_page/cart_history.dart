@@ -9,7 +9,6 @@ import 'package:food_delivery_application/screens/no_data/no_cart_page.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 
 class CartHistoryPage extends StatelessWidget {
