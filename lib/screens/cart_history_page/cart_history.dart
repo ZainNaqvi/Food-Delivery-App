@@ -56,7 +56,7 @@ class CartHistoryPage extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 16.h),
+            padding: EdgeInsets.only(top: 24.h),
             width: double.maxFinite,
             height: 80.h,
             decoration: BoxDecoration(color: Colors.teal),
@@ -70,6 +70,7 @@ class CartHistoryPage extends StatelessWidget {
                       fontSize: 24.sp,
                       fontWeight: FontWeight.w500),
                 ),
+
                 AppIcons(
                     backgrounColor: Colors.white,
                     iconColor: Colors.teal,

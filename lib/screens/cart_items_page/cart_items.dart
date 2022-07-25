@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
@@ -255,7 +258,12 @@ class CartPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  value.addToCartHistory();
+                        FirebaseAuth.instance.currentUser != null
+                            ? value.addToCartHistory()
+                            : Get.to(
+                                Signin(),
+                                transition: Transition.leftToRightWithFade,
+                              );
                 },
                 child: Container(
                   padding: EdgeInsets.all(18.r),

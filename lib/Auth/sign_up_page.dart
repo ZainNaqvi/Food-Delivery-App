@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
           isLoading = false;
         });
         Get.to(
-          MainPage(),
+          Signin(),
           transition: Transition.cupertinoDialog,
         );
       } else {

@@ -41,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ? NoData(
                 text: "No",
                 yes: true,
+                imageData: 'assets/images/unauth.jpg',
               )
                    
                
