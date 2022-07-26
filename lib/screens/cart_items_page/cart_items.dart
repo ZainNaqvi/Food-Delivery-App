@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
+import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_application/routes.dart';
@@ -236,54 +237,64 @@ class CartPage extends StatelessWidget {
           ),
           child: value.getItems.length > 0
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                padding: EdgeInsets.all(12.r),
-                width: 110.w,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "\$ ${value.totalPrice}",
-                      style: Theme.of(context).textTheme.headline3,
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                      padding: EdgeInsets.all(12.r),
+                      width: 110.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "\$ ${value.totalPrice}",
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          if (Get.find<LocationController>()
+                              .addressList
+                              .isEmpty) {
+                            Get.toNamed(AppRoutes.getAddressPage());
+                          }
+                          // value.addToCartHistory();
+
+                        } else {
+                          Get.to(
+                            Signin(),
+                            transition: Transition.leftToRightWithFade,
+                          );
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(18.r),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 16.w, vertical: 8.h),
+                        width: 180.w,
+                        decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          "!Check Out",
+                          maxLines: 1,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                        FirebaseAuth.instance.currentUser != null
-                            ? value.addToCartHistory()
-                            : Get.to(
-                                Signin(),
-                                transition: Transition.leftToRightWithFade,
-                              );
-                },
-                child: Container(
-                  padding: EdgeInsets.all(18.r),
-                  margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                  width: 180.w,
-                  decoration: BoxDecoration(
-                    color: Colors.teal,
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                  child: Text(
-                    "!Check Out",
-                    maxLines: 1,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ],
                 )
               : Container(),
         ),

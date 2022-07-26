@@ -14,7 +14,7 @@ class LocationController extends GetxController implements GetxService {
   Placemark _pickPlacemark = Placemark();
   List<AddressModel> _addressList = [];
   List<AddressModel> get addressList => _addAddressList;
-  late List<AddressModel> _addAddressList;
+  List<AddressModel> _addAddressList = [];
   List<String> _addressTypeList = ['home', 'office', 'others'];
   int _addressTypeIndex = 0;
   late Map<String, dynamic> _getAddress;

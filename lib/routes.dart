@@ -1,3 +1,4 @@
+import 'package:food_delivery_application/screens/add_address_page/add_address_page.dart';
 import 'package:food_delivery_application/screens/cart_items_page/cart_items.dart';
 import 'package:food_delivery_application/screens/mainpage.dart';
 import 'package:food_delivery_application/screens/productDetail/popularProducts.dart';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String popularFoodPage = "/popular-Food-Page";
   static const String recommendFoodPage = "/recommended-Food-Page";
   static const String cartPage = "/cart-page";
+  static const String addressPage = "/add-address-page";
 
   static String getSplash() => "${splash}";
   static String getInitialPage() => "${initial}";
@@ -19,6 +21,7 @@ class AppRoutes {
   static String getRecommendedPage(int pageId, String page) =>
       "$recommendFoodPage?pageId=$pageId&page=$page";
   static String getCartPage() => "$cartPage";
+  static String getAddressPage() => "$addressPage";
 
   static List<GetPage> routes = [
     GetPage(
@@ -62,6 +65,14 @@ class AppRoutes {
         name: cartPage,
         page: () {
           return CartPage();
-        }),
+      },
+    ),
+    GetPage(
+      transition: Transition.leftToRightWithFade,
+      name: addressPage,
+      page: () {
+        return AddAddressPage();
+      },
+    ),
   ];
 }
