@@ -39,11 +39,10 @@ class NoData extends StatelessWidget {
             ],
           ),
           SizedBox(height: 0.h),
-          SizedBox(height: 8.h),
+          yes ? SizedBox(height: 0.h) : SizedBox(height: 8.h),
           yes
               ? Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: 74.w, vertical: 74.h),
+                  
                   child: GestureDetector(
                     onTap: () {
                       Get.to(

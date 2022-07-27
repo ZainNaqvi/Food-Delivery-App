@@ -19,8 +19,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
   final _userPersonNumberController = TextEditingController();
   late bool _isLoggedIn;
   CameraPosition _cameraPosition =
-      CameraPosition(target: LatLng(30.3753, 69.3451), zoom: 17);
-  late LatLng _initialPosition;
+      CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
+  late LatLng _initialPosition = LatLng(45.51563, -122.677433);
 
   @override
   void initState() {
@@ -46,10 +46,18 @@ class _AddAddressPageState extends State<AddAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back_ios)),
+        centerTitle: true,
         title: Text(
           "Add Address",
           style: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 18.sp,
           ),
         ),
         backgroundColor: Colors.teal,
@@ -58,6 +66,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
         Container(
           height: 140.h,
           width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 5.w, right: 5.w, top: 5.h),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 5.r,
@@ -65,7 +74,14 @@ class _AddAddressPageState extends State<AddAddressPage> {
               border: Border.all(
                 width: 2,
                 color: Colors.blue,
-              )),
+            ),
+          ),
+          child: Stack(children: [
+            GoogleMap(
+              initialCameraPosition:
+                  CameraPosition(target: _initialPosition, zoom: 17),
+            ),
+          ]),
         ),
       ]),
     );
