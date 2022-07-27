@@ -62,28 +62,38 @@ class _AddAddressPageState extends State<AddAddressPage> {
         ),
         backgroundColor: Colors.teal,
       ),
-      body: Column(children: [
-        Container(
-          height: 140.h,
-          width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.only(left: 5.w, right: 5.w, top: 5.h),
-          decoration: BoxDecoration(
+      body: GetBuilder<LocationController>(builder: (value) {
+        return Column(children: [
+          Container(
+            height: 140.h,
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(left: 5.w, right: 5.w, top: 5.h),
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 5.r,
               ),
               border: Border.all(
                 width: 2,
                 color: Colors.blue,
+              ),
             ),
+            child: Stack(children: [
+              GoogleMap(
+                  initialCameraPosition:
+                      CameraPosition(target: _initialPosition, zoom: 17),
+                  zoomControlsEnabled: false,
+                  compassEnabled: false,
+                  indoorViewEnabled: true,
+                  mapToolbarEnabled: false,
+                  onCameraIdle: () {},
+                  onCameraMove: ((position) => _cameraPosition = position),
+                  onMapCreated: (GoogleMapController controller) {
+                    value.setMapController(controller);
+                  }),
+            ]),
           ),
-          child: Stack(children: [
-            GoogleMap(
-              initialCameraPosition:
-                  CameraPosition(target: _initialPosition, zoom: 17),
-            ),
-          ]),
-        ),
-      ]),
+        ]);
+      }),
     );
   }
 }
