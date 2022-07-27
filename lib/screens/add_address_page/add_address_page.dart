@@ -124,6 +124,50 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                   SizedBox(height: 12.h),
                   Padding(
+                    padding: EdgeInsets.only(left: 20.0, top: 8.h, bottom: 8.h),
+                    child: Container(
+                      height: 50.h,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: value.addressTypeList.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              value.setAddressTypeIndex(index);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w, vertical: 10.h),
+                              margin: EdgeInsets.only(right: 14.w),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5.r),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey[200]!,
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                  ),
+                                ],
+                              ),
+                              child: Icon(
+                                index == 0
+                                    ? Icons.home_filled
+                                    : index == 1
+                                        ? Icons.work
+                                        : Icons.location_on,
+                                color: value.addressTypeIndex == index
+                                    ? Colors.teal
+                                    : Theme.of(context).disabledColor,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12.h),
+                  Padding(
                     padding: EdgeInsets.only(left: 18.w),
                     child: Text(
                       "Delivery address",
