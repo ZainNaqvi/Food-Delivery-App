@@ -7,6 +7,7 @@ Container customInputTextFormField({
   required TextEditingController controller,
   required String hintText,
   Color color = Colors.yellow,
+  bool readOnly = false,
 }) {
   return Container(
     width: double.maxFinite,
@@ -25,6 +26,7 @@ Container customInputTextFormField({
       ],
     ),
     child: TextFormField(
+      readOnly: readOnly,
       controller: controller,
       decoration: InputDecoration(
         fillColor: Colors.white,

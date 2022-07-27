@@ -8,6 +8,7 @@ import 'package:food_delivery_application/screens/food_home_page/components/head
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
+import '../../controllers/getuserData.dart';
 import '../../widgets/dotindicator.dart';
 import 'components/footerCard.dart';
 import 'components/productText.dart';
@@ -26,6 +27,7 @@ class _FoodHomePageState extends State<FoodHomePage> {
   @override
   void initState() {
     super.initState();
+
     _pageController.addListener(() {
       setState(() {
         _currentPageValue = _pageController.page!;

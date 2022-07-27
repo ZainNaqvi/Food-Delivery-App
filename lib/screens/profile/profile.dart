@@ -39,7 +39,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: GetBuilder<GetUserData>(builder: (value) {
         return FirebaseAuth.instance.currentUser == null
             ? NoData(
-                text: "No",
+                text:
+                    "Complete the registration form by entering all the required fields. Required fields are indicated with an asterisk (*).",
                 yes: true,
                 imageData: 'assets/images/unauth.jpg',
               )
@@ -49,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ? Center(child: CircleIndicator())
                 : Container(
                     width: double.maxFinite,
-                    margin: EdgeInsets.only(top: 34.h),
+                    margin: EdgeInsets.only(top: 8.h),
                     child: Column(
                       children: [
                         AppIcons(
@@ -61,12 +62,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 144,
                           size: 74,
                         ),
-                        SizedBox(height: 18.h),
+                     
                         Expanded(
                           child: SingleChildScrollView(
                             physics: BouncingScrollPhysics(),
                             child: Column(
                               children: [
+                                SizedBox(height: 18.h),
                                 CustomListTile(
                                     context: context,
                                     backgrounColor: Colors.teal,

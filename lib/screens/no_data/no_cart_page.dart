@@ -20,7 +20,7 @@ class NoData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(height: 0.h),
@@ -33,6 +33,7 @@ class NoData extends StatelessWidget {
               Center(
                 child: Text(
                   text,
+                  textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ),
@@ -42,7 +43,8 @@ class NoData extends StatelessWidget {
           yes ? SizedBox(height: 0.h) : SizedBox(height: 8.h),
           yes
               ? Container(
-                  
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 38.w, vertical: 24.h),
                   child: GestureDetector(
                     onTap: () {
                       Get.to(
@@ -52,7 +54,7 @@ class NoData extends StatelessWidget {
                     },
                     child: Container(
                       width: 100.w,
-                      height: 80.h,
+                      height: 60.h,
                       decoration: BoxDecoration(
                         color: Colors.teal,
                         borderRadius: BorderRadius.circular(30.r),

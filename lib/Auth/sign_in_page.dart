@@ -6,6 +6,7 @@ import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dar
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
 
+import '../controllers/getuserData.dart';
 import '../widgets/customInputField.dart';
 
 class Signin extends StatefulWidget {
@@ -50,6 +51,7 @@ class _SigninState extends State<Signin> {
         setState(() {
           isLoading = false;
         });
+        await Get.find<GetUserData>().getUserData();
         Get.to(
           MainPage(),
           transition: Transition.cupertinoDialog,
