@@ -8,6 +8,7 @@ import 'package:food_delivery_application/data/repositories/cart_product_repo.da
 import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
 import 'package:food_delivery_application/data/repositories/recommended_product_repo.dart';
+import 'package:food_delivery_application/server/firebase_firestore/add_user_address.dart';
 import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,4 +38,5 @@ Future<void> init() async {
   Get.lazyPut(() => LocationController(locationRepo: Get.find()));
   
   Get.lazyPut(() => GetUserData());
+  Get.lazyPut(() => AddAddress());
 }

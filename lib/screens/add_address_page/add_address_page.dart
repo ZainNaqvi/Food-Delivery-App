@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
@@ -6,6 +7,7 @@ import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../server/firebase_firestore/add_user_address.dart';
 import '../../widgets/customInputField.dart';
 
 class AddAddressPage extends StatefulWidget {
@@ -43,6 +45,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
           Get.find<LocationController>().getAddress['longitude']);
     }
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -245,7 +249,25 @@ class _AddAddressPageState extends State<AddAddressPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      String res = await AddAddress().addAddress(
+                        name: _userPersonNameController.text,
+                        addressType: locationController.addressTypeList[
+                            locationController.addressTypeIndex],
+                        phone: _userPersonNumberController.text,
+                        address: _userAddressController.text,
+                        latitude:
+                            locationController.position.latitude.toString(),
+                        longitude:
+                            locationController.position.longitude.toString(),
+                        id: FirebaseAuth.instance.currentUser!.uid,
+                      );
+                      if (res == 'success') {
+                        Get.snackbar("Message", "success");
+                      } else {
+                        Get.snackbar("Message", "faslse");
+                      }
+                    },
                     child: Container(
                       padding: EdgeInsets.all(18.r),
                       margin:

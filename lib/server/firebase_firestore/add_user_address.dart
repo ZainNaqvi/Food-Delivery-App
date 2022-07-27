@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_delivery_application/models/address_model.dart';
 import 'package:get/get.dart';
 
-class Firestore {
+class AddAddress extends GetxController {
+  bool isSaving = false;
   final firestore = FirebaseFirestore.instance;
-  Future<String> createUser({
+  Future<String> addAddress({
     required String name,
     required String addressType,
     required String phone,
@@ -15,6 +16,8 @@ class Firestore {
   }) async {
     String res = 'Some Error occured';
     try {
+      isSaving = true;
+      update();
       AddressModel addressModel = AddressModel(
         addressType: addressType,
         address: address,
@@ -24,6 +27,7 @@ class Firestore {
         latitude: latitude,
         longitude: longitude,
       );
+
       // add user to the database
       await firestore
           .collection("users_address")
