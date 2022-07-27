@@ -2,6 +2,7 @@ import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/models/address_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -19,6 +20,7 @@ class LocationController extends GetxController implements GetxService {
   List<String> _addressTypeList = ['home', 'office', 'others'];
   int _addressTypeIndex = 0;
   bool _updateAddressData = true;
+  bool _changeAddress = true;
   late Map<String, dynamic> _getAddress;
   Map<String, dynamic> get getAddress => _getAddress;
 // getter
@@ -33,7 +35,7 @@ class LocationController extends GetxController implements GetxService {
   }
 
   // updating the location
-  void updatePosition(CameraPosition position, bool fromAddress) {
+  Future<void> updatePosition(CameraPosition position, bool fromAddress) async {
     if (_updateAddressData) {
       _loading = true;
       update();
@@ -61,9 +63,30 @@ class LocationController extends GetxController implements GetxService {
             speedAccuracy: 1,
           );
         }
+        if (_changeAddress) {
+          print("chagenaddres ");
+          String address = await getAddressFromGeoCode(
+              LatLng(position.target.latitude, position.target.longitude));
+          // print(address);
+        }
       } catch (e) {
         print(e);
       }
     }
+  }
+
+  Future<String> getAddressFromGeoCode(LatLng latLng) async {
+    String _address = "Unknown location found";
+
+    Response response = await locationRepo.getAddressFromGeoCode(latLng);
+    print(response.status.isOk);
+    if (response.body['status'] == 'OK') {
+      print("Response ok");
+
+      _address = response.body['results'][0]['formatted_address'].toString();
+      print("printing the address" + _address);
+    }
+
+    return _address;
   }
 }

@@ -85,7 +85,9 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   compassEnabled: false,
                   indoorViewEnabled: true,
                   mapToolbarEnabled: false,
-                  onCameraIdle: () {},
+                  onCameraIdle: () {
+                    value.updatePosition(_cameraPosition, true);
+                  },
                   onCameraMove: ((position) => _cameraPosition = position),
                   onMapCreated: (GoogleMapController controller) {
                     value.setMapController(controller);
