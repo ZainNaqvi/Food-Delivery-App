@@ -6,6 +6,8 @@ import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../widgets/customInputField.dart';
+
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({Key? key}) : super(key: key);
 
@@ -19,8 +21,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
   final _userPersonNumberController = TextEditingController();
   late bool _isLoggedIn;
   CameraPosition _cameraPosition =
-      CameraPosition(target: LatLng(45.51563, -122.677433), zoom: 17);
-  late LatLng _initialPosition = LatLng(45.51563, -122.677433);
+      CameraPosition(target: LatLng(30.3753, 69.3451), zoom: 17);
+  late LatLng _initialPosition = LatLng(30.3753, 69.3451);
 
   @override
   void initState() {
@@ -62,39 +64,94 @@ class _AddAddressPageState extends State<AddAddressPage> {
         ),
         backgroundColor: Colors.teal,
       ),
-      body: GetBuilder<LocationController>(builder: (value) {
-        return Column(children: [
-          Container(
-            height: 140.h,
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 5.w, right: 5.w, top: 5.h),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                5.r,
-              ),
-              border: Border.all(
-                width: 2,
-                color: Colors.blue,
-              ),
-            ),
-            child: Stack(children: [
-              GoogleMap(
-                  initialCameraPosition:
-                      CameraPosition(target: _initialPosition, zoom: 17),
-                  zoomControlsEnabled: false,
-                  compassEnabled: false,
-                  indoorViewEnabled: true,
-                  mapToolbarEnabled: false,
-                  onCameraIdle: () {
-                    value.updatePosition(_cameraPosition, true);
-                  },
-                  onCameraMove: ((position) => _cameraPosition = position),
-                  onMapCreated: (GoogleMapController controller) {
-                    value.setMapController(controller);
-                  }),
-            ]),
-          ),
-        ]);
+      body: GetBuilder<GetUserData>(builder: (userController) {
+        if (userController.snapshot != null &&
+            _userPersonNameController.text.isEmpty) {
+          _userPersonNameController.text =
+              '${userController.snapshot!["name"]}';
+          _userPersonNumberController.text =
+              '${userController.snapshot!["phone"]}';
+          if (Get.find<LocationController>().addressList.isNotEmpty) {
+            _userAddressController.text =
+                Get.find<LocationController>().getUserAddress().address;
+          }
+        }
+        return GetBuilder<LocationController>(builder: (value) {
+          _userAddressController.text = '${value.placeMark.name ?? ''}'
+              '${value.placeMark.locality ?? ''}'
+              '${value.placeMark.postalCode ?? ''}'
+              '${value.placeMark.country ?? ''}';
+          print("Addresss in my view is " + _userAddressController.text);
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 140.h,
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.only(left: 5.w, right: 5.w, top: 5.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      5.r,
+                    ),
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  child: Stack(children: [
+                    GoogleMap(
+                        trafficEnabled: true,
+                        myLocationEnabled: true,
+                        myLocationButtonEnabled: true,
+                        initialCameraPosition:
+                            CameraPosition(target: _initialPosition, zoom: 17),
+                        zoomControlsEnabled: false,
+                        compassEnabled: false,
+                        indoorViewEnabled: true,
+                        mapToolbarEnabled: false,
+                        onCameraIdle: () {
+                          value.updatePosition(_cameraPosition, true);
+                        },
+                        onCameraMove: ((position) =>
+                            _cameraPosition = position),
+                        onMapCreated: (GoogleMapController controller) {
+                          value.setMapController(controller);
+                        }),
+                  ]),
+                ),
+                SizedBox(height: 12.h),
+                Padding(
+                  padding: EdgeInsets.only(left: 18.w),
+                  child: Text(
+                    "Delivery Address",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                customInputTextFormField(
+                  controller: _userAddressController,
+                  hintText: "Address",
+                  iconData: Icons.location_city,
+                ),
+                SizedBox(height: 12.h),
+                customInputTextFormField(
+                  controller: _userPersonNameController,
+                  hintText: "User Name",
+                  iconData: Icons.person,
+                ),
+                SizedBox(height: 12.h),
+                customInputTextFormField(
+                  controller: _userPersonNumberController,
+                  hintText: "User Phone",
+                  iconData: Icons.phone,
+                ),
+                SizedBox(height: 12.h),
+              ]);
+        });
       }),
     );
   }

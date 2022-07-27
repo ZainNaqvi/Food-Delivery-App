@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/models/address_model.dart';
 import 'package:geocoding/geocoding.dart';
@@ -27,6 +29,8 @@ class LocationController extends GetxController implements GetxService {
   bool get loading => _loading;
   Position get position => _position;
   Position get pickPosition => _pickPosition;
+  Placemark get placeMark => _placemark;
+  Placemark get pickPlaceMark => _pickPlacemark;
 
   //for saving the google map address by the user
   late GoogleMapController _mapController;
@@ -65,9 +69,12 @@ class LocationController extends GetxController implements GetxService {
         }
         if (_changeAddress) {
           print("chagenaddres ");
-          String address = await getAddressFromGeoCode(
+          String _address = await getAddressFromGeoCode(
               LatLng(position.target.latitude, position.target.longitude));
           // print(address);
+          fromAddress
+              ? _placemark = Placemark(name: _address)
+              : _pickPlacemark = Placemark(name: _address);
         }
       } catch (e) {
         print(e);
@@ -88,5 +95,17 @@ class LocationController extends GetxController implements GetxService {
     }
 
     return _address;
+  }
+
+  AddressModel getUserAddress() {
+    late AddressModel _addressModel;
+    _getAddress = jsonDecode(locationRepo.getUserAddress());
+    try {
+      _addressModel =
+          AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
+    } catch (e) {
+      print(e);
+    }
+    return _addressModel;
   }
 }
