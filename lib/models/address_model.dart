@@ -1,5 +1,5 @@
 class AddressModel {
-  late int? _id;
+  late String _id;
   late String _addressType;
   late String? _contactPersonName;
   late String? _contactPersonNumber;

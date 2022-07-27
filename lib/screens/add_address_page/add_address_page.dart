@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../server/firebase_firestore/add_user_address.dart';
+import '../../widgets/circuleIndicator.dart';
 import '../../widgets/customInputField.dart';
 
 class AddAddressPage extends StatefulWidget {
@@ -45,8 +47,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
           Get.find<LocationController>().getAddress['longitude']);
     }
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -248,47 +248,50 @@ class _AddAddressPageState extends State<AddAddressPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () async {
-                      String res = await AddAddress().addAddress(
-                        name: _userPersonNameController.text,
-                        addressType: locationController.addressTypeList[
-                            locationController.addressTypeIndex],
-                        phone: _userPersonNumberController.text,
-                        address: _userAddressController.text,
-                        latitude:
-                            locationController.position.latitude.toString(),
-                        longitude:
-                            locationController.position.longitude.toString(),
-                        id: FirebaseAuth.instance.currentUser!.uid,
-                      );
-                      if (res == 'success') {
-                        Get.snackbar("Message", "success");
-                      } else {
-                        Get.snackbar("Message", "faslse");
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(18.r),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                      width: 180.w,
-                      decoration: BoxDecoration(
-                        color: Colors.teal,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Text(
-                        "Save address",
-                        overflow: TextOverflow.visible,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22.sp,
+                  AddAddress().isSaving
+                      ? CircleIndicator()
+                      : GestureDetector(
+                          onTap: () async {
+                            String res = await AddAddress().addAddress(
+                              name: _userPersonNameController.text,
+                              addressType: locationController.addressTypeList[
+                                  locationController.addressTypeIndex],
+                              phone: _userPersonNumberController.text,
+                              address: _userAddressController.text,
+                              latitude: locationController.position.latitude
+                                  .toString(),
+                              longitude: locationController.position.longitude
+                                  .toString(),
+                              id: FirebaseAuth.instance.currentUser!.uid,
+                            );
+                            if (res == 'success') {
+                              Get.toNamed(AppRoutes.getCartPage());
+                            } else {
+                              Get.snackbar("Message",
+                                  "The address is not saved. Try again! ");
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(18.r),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 8.h),
+                            width: 180.w,
+                            decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            child: Text(
+                              "Save address",
+                              overflow: TextOverflow.visible,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22.sp,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

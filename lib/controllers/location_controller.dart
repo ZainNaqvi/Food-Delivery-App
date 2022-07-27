@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:food_delivery_application/controllers/add_address_user.dart';
 import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/models/address_model.dart';
 import 'package:geocoding/geocoding.dart';
@@ -17,8 +18,9 @@ class LocationController extends GetxController implements GetxService {
   Placemark _placemark = Placemark();
   Placemark _pickPlacemark = Placemark();
   List<AddressModel> _addressList = [];
-  List<AddressModel> get addressList => _addAddressList;
-  List<AddressModel> _addAddressList = [];
+  List<AddressModel> get addressList => _addressList;
+  List<AddressModel> _allAddressList = [];
+  List<AddressModel> get allAddressList => _allAddressList;
   List<String> _addressTypeList = ['home', 'office', 'others'];
   List<String> get addressTypeList => _addressTypeList;
   int _addressTypeIndex = 0;
@@ -113,6 +115,20 @@ class LocationController extends GetxController implements GetxService {
 
   void setAddressTypeIndex(int index) {
     _addressTypeIndex = index;
+    update();
+  }
+
+  Future<void> getAddressList() async {
+    final data = Get.find<AllAddress>().snapshot;
+    if (data != null) {
+      _addressList = [];
+      _allAddressList = [];
+      _addressList.add(data['address']);
+      _allAddressList.add(data['address']);
+    } else {
+      _addressList = [];
+      _allAddressList = [];
+    }
     update();
   }
 }

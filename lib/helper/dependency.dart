@@ -1,3 +1,4 @@
+import 'package:food_delivery_application/controllers/add_address_user.dart';
 import 'package:food_delivery_application/controllers/cart_product_controller.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
@@ -39,4 +40,5 @@ Future<void> init() async {
   
   Get.lazyPut(() => GetUserData());
   Get.lazyPut(() => AddAddress());
+  Get.lazyPut(() => AllAddress());
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/controllers/add_address_user.dart';
 import 'package:food_delivery_application/routes.dart';
 import 'package:get/get.dart';
 import '../../controllers/getuserData.dart';
@@ -22,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
     Get.find<GetUserData>().getUserData();
+    Get.find<AllAddress>().allAddressList();
   }
 
   @override

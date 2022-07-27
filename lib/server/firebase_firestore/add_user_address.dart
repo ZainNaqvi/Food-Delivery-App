@@ -16,8 +16,6 @@ class AddAddress extends GetxController {
   }) async {
     String res = 'Some Error occured';
     try {
-      isSaving = true;
-      update();
       AddressModel addressModel = AddressModel(
         addressType: addressType,
         address: address,
@@ -33,12 +31,14 @@ class AddAddress extends GetxController {
           .collection("users_address")
           .doc(id)
           .set(addressModel.toJson());
+      Future.delayed(Duration(seconds: 1));
       res = "success";
-      Get.snackbar("Message", "The data is successfully submited.");
+      Get.snackbar("Message", "The Address is saved Successfully.");
     } catch (err) {
       res = err.toString();
-      Get.snackbar("Message", res);
+      // Get.snackbar("Message", res);
     }
+    update();
     return res;
   }
 }
