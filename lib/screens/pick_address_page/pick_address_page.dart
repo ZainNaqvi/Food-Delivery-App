@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
+import 'package:food_delivery_application/widgets/customButton.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -65,7 +66,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                     onCameraIdle: () {
                       Get.find<LocationController>().updatePosition(
                         _cameraPosition,
-                        false,
+                        true,
                       );
                     },
                   ),
@@ -95,7 +96,8 @@ class _PickAddressPageState extends State<PickAddressPage> {
                           Expanded(
                             child: Center(
                               child: Text(
-                                "${locationController.placeMark.name ?? ''}",
+                                locationController.placeMark.name ??
+                                    '...loading',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -107,6 +109,29 @@ class _PickAddressPageState extends State<PickAddressPage> {
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 80.h,
+                    left: 20.w,
+                    right: 20.w,
+                    child: CustomButton(
+                      buttonText: "Pick Address",
+                      width: 200.w,
+                      onPressed: locationController.loading
+                          ? null
+                          : () {
+                              if (locationController.pickPosition.latitude !=
+                                      0 &&
+                                  locationController.pickPlaceMark.name !=
+                                      null) {
+                                if (widget.fromAddress) {
+                                  if (widget.googleMapController != null) {
+                                    print("Now you can clicke on this");
+                                  }
+                                }
+                              }
+                            },
                     ),
                   ),
                 ],

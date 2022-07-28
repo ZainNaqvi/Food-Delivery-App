@@ -86,10 +86,10 @@ class _AddAddressPageState extends State<AddAddressPage> {
             }
           }
           return GetBuilder<LocationController>(builder: (value) {
-            _userAddressController.text = '${value.placeMark.name ?? ''}'
-                '${value.placeMark.locality ?? ''}'
-                '${value.placeMark.postalCode ?? ''}'
-                '${value.placeMark.country ?? ''}';
+            _userAddressController.text = '${value.placeMark.name ?? '.'}'
+                '${value.placeMark.locality ?? '.'}'
+                '${value.placeMark.postalCode ?? '.'}'
+                '${value.placeMark.country ?? '.'}';
 
             print("Addresss in my view is " + _userAddressController.text);
             return Column(
