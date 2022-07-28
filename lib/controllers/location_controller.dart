@@ -82,11 +82,13 @@ class LocationController extends GetxController implements GetxService {
               ? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
         }
-        _loading = false;
-        update();
       } catch (e) {
         print(e);
       }
+      _loading = false;
+      update();
+    } else {
+      _updateAddressData = true;
     }
   }
 
@@ -139,6 +141,13 @@ class LocationController extends GetxController implements GetxService {
       _allAddressList = [];
       print(_addressList);
     }
+    update();
+  }
+
+  void setAddressData() {
+    _position = _pickPosition;
+    _placemark = _pickPlacemark;
+    _updateAddressData = false;
     update();
   }
 }

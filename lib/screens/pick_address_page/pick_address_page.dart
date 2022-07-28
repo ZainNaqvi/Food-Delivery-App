@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:food_delivery_application/widgets/customButton.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PickAddressPage extends StatefulWidget {
@@ -128,7 +130,21 @@ class _PickAddressPageState extends State<PickAddressPage> {
                                 if (widget.fromAddress) {
                                   if (widget.googleMapController != null) {
                                     print("Now you can clicke on this");
+                                    widget.googleMapController!.moveCamera(
+                                      CameraUpdate.newCameraPosition(
+                                        CameraPosition(
+                                          target: LatLng(
+                                            locationController
+                                                .pickPosition.latitude,
+                                            locationController
+                                                .pickPosition.longitude,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                    locationController.setAddressData();
                                   }
+                                  Get.toNamed(AppRoutes.getAddressPage());
                                 }
                               }
                             },
