@@ -28,7 +28,7 @@ class LocationController extends GetxController implements GetxService {
   int get addressTypeIndex => _addressTypeIndex;
   bool _updateAddressData = true;
   bool _changeAddress = true;
-  late Map<String, dynamic> _getAddress;
+  Map<String, dynamic> _getAddress = {};
   Map<String, dynamic> get getAddress => _getAddress;
 // getter
   bool get loading => _loading;

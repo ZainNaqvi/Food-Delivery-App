@@ -38,8 +38,6 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<GetUserData>().getUserData();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
- 
-
       _cameraPosition = CameraPosition(
         target: LatLng(
             double.parse(Get.find<LocationController>().getAddress['latitude']),
@@ -87,13 +85,11 @@ class _AddAddressPageState extends State<AddAddressPage> {
             }
           }
           return GetBuilder<LocationController>(builder: (value) {
-            Get.find<AllAddress>().snapshot == null
-                ? _userAddressController.text = '${value.placeMark.name ?? ''}'
+            _userAddressController.text = '${value.placeMark.name ?? ''}'
                 '${value.placeMark.locality ?? ''}'
                 '${value.placeMark.postalCode ?? ''}'
-                    '${value.placeMark.country ?? ''}'
-                : _userAddressController.text =
-                    Get.find<AllAddress>().snapshot!['address'];
+                '${value.placeMark.country ?? ''}';
+
             print("Addresss in my view is " + _userAddressController.text);
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

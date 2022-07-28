@@ -91,7 +91,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         .addressList
                                         .isEmpty
                                     ? GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.offNamed(
+                                              AppRoutes.getAddressPage());
+                                        },
                                         child: CustomListTile(
                                           context: context,
                                           backgrounColor: Colors.yellow,
@@ -100,7 +103,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       )
                                     : GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Get.offNamed(
+                                              AppRoutes.getAddressPage());
+                                        },
                                         child: CustomListTile(
                                           context: context,
                                           backgrounColor: Colors.yellow,
