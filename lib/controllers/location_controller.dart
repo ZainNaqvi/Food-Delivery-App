@@ -39,6 +39,7 @@ class LocationController extends GetxController implements GetxService {
 
   //for saving the google map address by the user
   late GoogleMapController _mapController;
+  GoogleMapController get mapController => _mapController;
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
   }
@@ -81,6 +82,7 @@ class LocationController extends GetxController implements GetxService {
               ? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
         }
+        _loading = false;
         update();
       } catch (e) {
         print(e);
@@ -139,6 +141,4 @@ class LocationController extends GetxController implements GetxService {
     }
     update();
   }
-
-
 }

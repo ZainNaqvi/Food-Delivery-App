@@ -85,7 +85,26 @@ class _SigninState extends State<Signin> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
+              children: [
+                Text(
+                  "Hello",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 54.sp,
+                  ),
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  "Sign in to your account",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp,
+                  ),
+                ),
+                SizedBox(height: 16.h),
+              ],
             ),
           ),
           Expanded(
@@ -94,24 +113,7 @@ class _SigninState extends State<Signin> {
               child: Form(
                 child: Column(
                   children: [
-                    Text(
-                      "Hello",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 54.sp,
-                      ),
-                    ),
-                    SizedBox(height: 2.h),
-                    Text(
-                      "Sign in to your account",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18.sp,
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
+                    
                     customInputTextFormField(
                       controller: _userEmailController,
                       hintText: "Email",

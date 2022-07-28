@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:food_delivery_application/routes.dart';
+import 'package:food_delivery_application/screens/pick_address_page/pick_address_page.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -109,6 +110,16 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     ),
                     child: Stack(children: [
                       GoogleMap(
+                          onTap: (latlng) {
+                            Get.toNamed(
+                              AppRoutes.getPickAddress(),
+                              arguments: PickAddressPage(
+                                fromSignup: false,
+                                fromAddress: true,
+                                googleMapController: value.mapController,
+                              ),
+                            );
+                          },
                           // trafficEnabled: true,
                           myLocationEnabled: true,
                           myLocationButtonEnabled: true,
