@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:food_delivery_application/controllers/add_address_user.dart';
 import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/models/address_model.dart';
+import 'package:food_delivery_application/server/firebase_firestore/add_user_address.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -17,10 +18,10 @@ class LocationController extends GetxController implements GetxService {
   late Position _pickPosition;
   Placemark _placemark = Placemark();
   Placemark _pickPlacemark = Placemark();
-  List<AddressModel> _addressList = [];
-  List<AddressModel> get addressList => _addressList;
-  List<AddressModel> _allAddressList = [];
-  List<AddressModel> get allAddressList => _allAddressList;
+  List<String> _addressList = [];
+  List<String> get addressList => _addressList;
+  List<String> _allAddressList = [];
+  List<String> get allAddressList => _allAddressList;
   List<String> _addressTypeList = ['home', 'office', 'others'];
   List<String> get addressTypeList => _addressTypeList;
   int _addressTypeIndex = 0;
@@ -80,6 +81,7 @@ class LocationController extends GetxController implements GetxService {
               ? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
         }
+        update();
       } catch (e) {
         print(e);
       }
@@ -97,7 +99,7 @@ class LocationController extends GetxController implements GetxService {
       _address = response.body['results'][0]['formatted_address'].toString();
       print("printing the address" + _address);
     }
-
+    update();
     return _address;
   }
 
@@ -121,14 +123,22 @@ class LocationController extends GetxController implements GetxService {
   Future<void> getAddressList() async {
     final data = Get.find<AllAddress>().snapshot;
     if (data != null) {
+      print("Data is not null im gettin gin ");
       _addressList = [];
       _allAddressList = [];
+      print("Dta in the list is $_addressList");
       _addressList.add(data['address']);
+      print("Dta in the list is $_addressList");
       _allAddressList.add(data['address']);
+      print("Dta in the list is $_addressList");
     } else {
+      print("Data in false  $_addressList");
       _addressList = [];
       _allAddressList = [];
+      print(_addressList);
     }
     update();
   }
+
+
 }

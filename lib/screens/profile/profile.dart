@@ -1,11 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_application/controllers/add_address_user.dart';
 import 'package:food_delivery_application/controllers/getuserData.dart';
+import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/screens/no_data/no_cart_page.dart';
+import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/location_controller.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -44,8 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 yes: true,
                 imageData: 'assets/images/unauth.jpg',
               )
-                   
-               
             : value.isLoading
                 ? Center(child: CircleIndicator())
                 : Container(
@@ -62,7 +65,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 144,
                           size: 74,
                         ),
-                     
                         Expanded(
                           child: SingleChildScrollView(
                             physics: BouncingScrollPhysics(),
@@ -85,17 +87,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   iconData: Icons.email,
                                   title: value.snapshot!['email'],
                                 ),
-                                CustomListTile(
-                                  context: context,
-                                  backgrounColor: Colors.yellow,
-                                  iconData: Icons.location_on,
-                                  title: 'Fill Your location',
-                                ),
-                                CustomListTile(
-                                  context: context,
-                                  backgrounColor: Colors.red,
-                                  iconData: Icons.message_outlined,
-                                  title: 'NONE',
+                                Get.find<LocationController>()
+                                        .addressList
+                                        .isEmpty
+                                    ? GestureDetector(
+                                        onTap: () {},
+                                        child: CustomListTile(
+                                          context: context,
+                                          backgrounColor: Colors.yellow,
+                                          iconData: Icons.location_on,
+                                          title: 'Fill Your location',
+                                        ),
+                                      )
+                                    : GestureDetector(
+                                        onTap: () {},
+                                        child: CustomListTile(
+                                          context: context,
+                                          backgrounColor: Colors.yellow,
+                                          iconData: Icons.location_on,
+                                          title: 'Your address',
+                                        ),
+                                      ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    await AuthUser().signOut();
+                                    Get.toNamed(AppRoutes.getInitialPage());
+                                  },
+                                  child: CustomListTile(
+                                    context: context,
+                                    backgrounColor: Colors.red,
+                                    iconData: Icons.message_outlined,
+                                    title: 'Logout',
+                                  ),
                                 ),
                               ],
                             ),

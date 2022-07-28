@@ -8,6 +8,7 @@ import 'package:food_delivery_application/routes.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../controllers/add_address_user.dart';
 import '../../server/firebase_firestore/add_user_address.dart';
 import '../../widgets/circuleIndicator.dart';
 import '../../widgets/customInputField.dart';
@@ -37,6 +38,8 @@ class _AddAddressPageState extends State<AddAddressPage> {
       Get.find<GetUserData>().getUserData();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+ 
+
       _cameraPosition = CameraPosition(
         target: LatLng(
             double.parse(Get.find<LocationController>().getAddress['latitude']),
@@ -84,10 +87,13 @@ class _AddAddressPageState extends State<AddAddressPage> {
             }
           }
           return GetBuilder<LocationController>(builder: (value) {
-            _userAddressController.text = '${value.placeMark.name ?? ''}'
+            Get.find<AllAddress>().snapshot == null
+                ? _userAddressController.text = '${value.placeMark.name ?? ''}'
                 '${value.placeMark.locality ?? ''}'
                 '${value.placeMark.postalCode ?? ''}'
-                '${value.placeMark.country ?? ''}';
+                    '${value.placeMark.country ?? ''}'
+                : _userAddressController.text =
+                    Get.find<AllAddress>().snapshot!['address'];
             print("Addresss in my view is " + _userAddressController.text);
             return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +113,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     ),
                     child: Stack(children: [
                       GoogleMap(
-                          trafficEnabled: true,
+                          // trafficEnabled: true,
                           myLocationEnabled: true,
                           myLocationButtonEnabled: true,
                           initialCameraPosition: CameraPosition(
@@ -265,7 +271,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                               id: FirebaseAuth.instance.currentUser!.uid,
                             );
                             if (res == 'success') {
-                              Get.toNamed(AppRoutes.getCartPage());
+                              Get.offNamed(AppRoutes.getInitialPage());
                             } else {
                               Get.snackbar("Message",
                                   "The address is not saved. Try again! ");

@@ -74,7 +74,7 @@ class _SigninState extends State<Signin> {
           Container(
             width: double.maxFinite,
             height: 190.h,
-            margin: EdgeInsets.symmetric(vertical: 24.h),
+            margin: EdgeInsets.symmetric(vertical: 28.h),
             child: Image.asset("assets/images/splash_1.png"),
           ),
           Container(
@@ -85,25 +85,7 @@ class _SigninState extends State<Signin> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Hello",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 54.sp,
-                  ),
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  "Sign in to your account",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18.sp,
-                  ),
-                ),
-              ],
+              children: [],
             ),
           ),
           Expanded(
@@ -112,6 +94,23 @@ class _SigninState extends State<Signin> {
               child: Form(
                 child: Column(
                   children: [
+                    Text(
+                      "Hello",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 54.sp,
+                      ),
+                    ),
+                    SizedBox(height: 2.h),
+                    Text(
+                      "Sign in to your account",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18.sp,
+                      ),
+                    ),
                     SizedBox(height: 16.h),
                     customInputTextFormField(
                       controller: _userEmailController,
@@ -164,10 +163,10 @@ class _SigninState extends State<Signin> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: 18.sp,
                                   ),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                     SizedBox(height: 24.h),
                     GestureDetector(
                       onTap: () {

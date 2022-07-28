@@ -13,8 +13,23 @@ import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:get/get.dart';
 
-class CartPage extends StatelessWidget {
+import '../../controllers/add_address_user.dart';
+
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Get.find<AllAddress>().allAddressList();
+    Get.find<LocationController>().getAddressList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -259,15 +274,18 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         if (FirebaseAuth.instance.currentUser != null) {
                           if (Get.find<LocationController>()
                               .addressList
                               .isEmpty) {
                             Get.toNamed(AppRoutes.getAddressPage());
-                          }
-                          // value.addToCartHistory();
-
+                          } else if (Get.find<LocationController>()
+                              .addressList
+                              .isNotEmpty) {
+                            value.addToCartHistory();
+                            print(value.getCartHistoryList());
+                          } else {}
                         } else {
                           Get.to(
                             Signin(),
