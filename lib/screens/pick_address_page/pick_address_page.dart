@@ -5,7 +5,6 @@ import 'package:food_delivery_application/routes.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:food_delivery_application/widgets/customButton.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PickAddressPage extends StatefulWidget {
@@ -24,16 +23,16 @@ class PickAddressPage extends StatefulWidget {
 }
 
 class _PickAddressPageState extends State<PickAddressPage> {
-  late LatLng _initialPosition;
-  late GoogleMapController _mapController;
-  late CameraPosition _cameraPosition;
+  LatLng? _initialPosition;
+  GoogleMapController? _mapController;
+  CameraPosition? _cameraPosition;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     if (Get.find<LocationController>().addressList.isEmpty) {
       _initialPosition = LatLng(30.3753, 69.3451);
-      _cameraPosition = CameraPosition(target: _initialPosition, zoom: 17);
+      _cameraPosition = CameraPosition(target: _initialPosition!, zoom: 17);
     } else {
       if (Get.find<LocationController>().addressList.isNotEmpty) {
         _initialPosition = LatLng(
@@ -41,7 +40,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
             double.parse(
                 Get.find<LocationController>().getAddress['longitude']));
 
-        _cameraPosition = CameraPosition(target: _initialPosition, zoom: 17);
+        _cameraPosition = CameraPosition(target: _initialPosition!, zoom: 17);
       }
     }
   }
@@ -58,7 +57,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                 children: [
                   GoogleMap(
                     initialCameraPosition: CameraPosition(
-                      target: _initialPosition,
+                      target: _initialPosition!,
                       zoom: 17,
                     ),
                     zoomControlsEnabled: true,
@@ -67,7 +66,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                     },
                     onCameraIdle: () {
                       Get.find<LocationController>().updatePosition(
-                        _cameraPosition,
+                        _cameraPosition!,
                         true,
                       );
                     },
@@ -113,7 +112,8 @@ class _PickAddressPageState extends State<PickAddressPage> {
                       ),
                     ),
                   ),
-                  Positioned(
+                  "2" == ""
+                      ? Positioned(
                     bottom: 80.h,
                     left: 20.w,
                     right: 20.w,
@@ -149,7 +149,10 @@ class _PickAddressPageState extends State<PickAddressPage> {
                               }
                             },
                     ),
-                  ),
+                        )
+                      : Container(
+                          height: 0.0,
+                        ),
                 ],
               ),
             ),

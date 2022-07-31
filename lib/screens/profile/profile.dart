@@ -104,8 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       )
                                     : GestureDetector(
                                         onTap: () {
-                                          Get.offNamed(
-                                              AppRoutes.getAddressPage());
+                                       
                                         },
                                         child: CustomListTile(
                                           context: context,
