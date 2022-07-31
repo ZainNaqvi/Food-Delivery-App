@@ -181,7 +181,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                                           );
                                           locationController.setAddressData();
                                         }
-                                        Get.toNamed(AppRoutes.getAddressPage());
+                                        Get.toNamed(AppRoutes.getInitialPage());
                                       }
                               }
                             },
