@@ -90,6 +90,7 @@ class LocationController extends GetxController implements GetxService {
     } else {
       _updateAddressData = true;
     }
+
   }
 
   Future<String> getAddressFromGeoCode(LatLng latLng) async {

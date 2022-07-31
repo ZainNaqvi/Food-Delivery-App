@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_application/controllers/location_controller.dart';
 import 'package:food_delivery_application/routes.dart';
+import 'package:food_delivery_application/screens/add_address_page/add_address_page.dart';
 import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:food_delivery_application/widgets/customButton.dart';
 import 'package:get/get.dart';
@@ -112,8 +113,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                       ),
                     ),
                   ),
-                  "2" == ""
-                      ? Positioned(
+                  Positioned(
                     bottom: 80.h,
                     left: 20.w,
                     right: 20.w,
@@ -122,14 +122,19 @@ class _PickAddressPageState extends State<PickAddressPage> {
                       width: 200.w,
                       onPressed: locationController.loading
                           ? null
-                          : () {
+                          : () async {
+                              // Get.back();
+                              print("\n\n\n\n\n\nstart\n\n\n\n");
                               if (locationController.pickPosition.latitude !=
-                                      0 &&
+                                      0.0 &&
                                   locationController.pickPlaceMark.name !=
                                       null) {
+                                print("\n\n\n\n\n\nstart2\n\n\n\n");
                                 if (widget.fromAddress) {
+                                  print("\n\n\n\n\n\nstart3\n\n\n\n");
                                   if (widget.googleMapController != null) {
-                                    print("Now you can clicke on this");
+                                    print("\n\n\n\n\n\nstart4\n\n\n\n");
+                                    print("Now you can clicks on this");
                                     widget.googleMapController!.moveCamera(
                                       CameraUpdate.newCameraPosition(
                                         CameraPosition(
@@ -149,10 +154,7 @@ class _PickAddressPageState extends State<PickAddressPage> {
                               }
                             },
                     ),
-                        )
-                      : Container(
-                          height: 0.0,
-                        ),
+                  )
                 ],
               ),
             ),
