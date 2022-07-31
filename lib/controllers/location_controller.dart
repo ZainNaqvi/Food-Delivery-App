@@ -16,6 +16,13 @@ class LocationController extends GetxController implements GetxService {
   bool _loading = false;
   late Position _position;
   late Position _pickPosition;
+//for service zone
+  bool _isloading = false;
+  bool get isloading => _isloading;
+  bool _isZone = false;
+  bool get isZone => _isZone;
+  bool _buttonDisabled = true;
+  bool get buttonDisabled => _buttonDisabled;
   Placemark _placemark = Placemark();
   Placemark _pickPlacemark = Placemark();
   List<String> _addressList = [];
@@ -73,6 +80,10 @@ class LocationController extends GetxController implements GetxService {
             speedAccuracy: 1,
           );
         }
+        bool res = await getZone(position.target.latitude.toString(),
+            position.target.longitude.toString(), false);
+        _buttonDisabled = !res;
+
         if (_changeAddress) {
           print("chagenaddres ");
           String _address = await getAddressFromGeoCode(
@@ -90,7 +101,6 @@ class LocationController extends GetxController implements GetxService {
     } else {
       _updateAddressData = true;
     }
-
   }
 
   Future<String> getAddressFromGeoCode(LatLng latLng) async {
@@ -150,5 +160,26 @@ class LocationController extends GetxController implements GetxService {
     _placemark = _pickPlacemark;
     _updateAddressData = false;
     update();
+  }
+
+  Future<bool> getZone(String lat, String lng, bool markerLoad) async {
+    bool res = false;
+    if (markerLoad) {
+      _loading = true;
+    } else {
+      _isloading = true;
+    }
+    update();
+    await Future.delayed(Duration(seconds: 2), () {
+      res = true;
+      if (markerLoad) {
+        _loading = false;
+      } else {
+        _isloading = false;
+      }
+      _isZone = true;
+    });
+    update();
+    return res;
   }
 }

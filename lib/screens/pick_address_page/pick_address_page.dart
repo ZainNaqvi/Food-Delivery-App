@@ -117,10 +117,19 @@ class _PickAddressPageState extends State<PickAddressPage> {
                     bottom: 80.h,
                     left: 20.w,
                     right: 20.w,
-                    child: CustomButton(
-                      buttonText: "Pick Address",
+                    child: locationController.isloading
+                        ? Center(
+                            child: CircleIndicator(),
+                          )
+                        : CustomButton(
+                            buttonText: locationController.isZone
+                                ? widget.fromAddress
+                                    ? "Pick Address"
+                                    : "Pick Location"
+                                : "Services is not available in your area.",
                       width: 200.w,
-                      onPressed: locationController.loading
+                            onPressed: locationController.buttonDisabled ||
+                                    locationController.loading
                           ? null
                           : () async {
                               // Get.back();
@@ -151,6 +160,29 @@ class _PickAddressPageState extends State<PickAddressPage> {
                                   }
                                   Get.toNamed(AppRoutes.getAddressPage());
                                 }
+                              else {
+                                        print("\n\n\n\n\n\nstart3\n\n\n\n");
+                                        if (widget.googleMapController !=
+                                            null) {
+                                          print("\n\n\n\n\n\nstart4\n\n\n\n");
+                                          print("Now you can clicks on this");
+                                          widget.googleMapController!
+                                              .moveCamera(
+                                            CameraUpdate.newCameraPosition(
+                                              CameraPosition(
+                                                target: LatLng(
+                                                  locationController
+                                                      .pickPosition.latitude,
+                                                  locationController
+                                                      .pickPosition.longitude,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                          locationController.setAddressData();
+                                        }
+                                        Get.toNamed(AppRoutes.getAddressPage());
+                                      }
                               }
                             },
                     ),

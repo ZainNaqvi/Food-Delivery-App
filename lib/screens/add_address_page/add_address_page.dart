@@ -111,7 +111,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                     child: Stack(children: [
                       GoogleMap(
                           onTap: (latlng) {
-                            value.updatePosition(_cameraPosition, true);
+                            value.updatePosition(_cameraPosition, false);
                             Get.toNamed(
                               AppRoutes.getPickAddress(),
                               arguments: PickAddressPage(
