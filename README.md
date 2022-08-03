@@ -1,4 +1,5 @@
 <p align="left">
+ <img src="assets/images/Capture19.PNG"/>
 <img src="assets/images/Capture4.PNG"/>
 <img src="assets/images/Capture3.PNG"/>
 <img src="assets/images/Capture1.PNG"/>
@@ -17,6 +18,5 @@
 <img src="assets/images/Capture16.PNG"/>
 <img src="assets/images/Capture17.PNG"/>
 <img src="assets/images/Capture18.PNG"/>
-<img src="assets/images/Capture19.PNG"/>
 </p>
 
