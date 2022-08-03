@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:food_delivery_application/models/address_model.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class AllAddress extends GetxController {
+class AllAddress extends GetxController implements GetxService{
   DocumentSnapshot? snapshot;
   bool isLoading = false;
   allAddressList() async {

@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../models/cart_product_model.dart';
-
+import '../../utils/app_constants.dart';
 class CartProductRepo {
   final SharedPreferences sharedPreferences;
   CartProductRepo({required this.sharedPreferences});

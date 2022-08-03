@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/controllers/add_address_user.dart';
-import 'package:food_delivery_application/controllers/getuserData.dart';
-import 'package:food_delivery_application/routes.dart';
-import 'package:food_delivery_application/screens/no_data/no_cart_page.dart';
-import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dart';
-import 'package:food_delivery_application/widgets/appicons.dart';
-import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/getuserData.dart';
 import '../../controllers/location_controller.dart';
+import '../../routes.dart';
+import '../../server/firebase_auth/firebase_auth.dart';
+import '../../widgets/appicons.dart';
+import '../../widgets/circuleIndicator.dart';
+import '../no_data/no_cart_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);

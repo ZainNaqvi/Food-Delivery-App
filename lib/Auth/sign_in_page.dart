@@ -1,12 +1,12 @@
+import 'package:food_delivery_application/Auth/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/Auth/sign_up_page.dart';
-import 'package:food_delivery_application/screens/mainpage.dart';
-import 'package:food_delivery_application/server/firebase_auth/firebase_auth.dart';
-import 'package:food_delivery_application/widgets/circuleIndicator.dart';
 import 'package:get/get.dart';
 
 import '../controllers/getuserData.dart';
+import '../screens/mainpage.dart';
+import '../server/firebase_auth/firebase_auth.dart';
+import '../widgets/circuleIndicator.dart';
 import '../widgets/customInputField.dart';
 
 class Signin extends StatefulWidget {

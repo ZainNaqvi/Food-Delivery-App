@@ -1,18 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/controllers/getuserData.dart';
-import 'package:food_delivery_application/controllers/location_controller.dart';
-import 'package:food_delivery_application/routes.dart';
-import 'package:food_delivery_application/screens/pick_address_page/pick_address_page.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../controllers/add_address_user.dart';
+import '../../controllers/getuserData.dart';
+import '../../controllers/location_controller.dart';
+import '../../routes.dart';
 import '../../server/firebase_firestore/add_user_address.dart';
 import '../../widgets/circuleIndicator.dart';
 import '../../widgets/customInputField.dart';
+import '../pick_address_page/pick_address_page.dart';
 
 class AddAddressPage extends StatefulWidget {
   const AddAddressPage({Key? key}) : super(key: key);
@@ -52,6 +51,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color(0xffF2F2F2),
       appBar: AppBar(
@@ -198,7 +198,7 @@ class _AddAddressPageState extends State<AddAddressPage> {
                   ),
                   SizedBox(height: 8.h),
                   customInputTextFormField(
-                    readOnly: true,
+                    readOnly: false,
                     controller: _userAddressController,
                     hintText: "Address",
                     iconData: Icons.location_city,

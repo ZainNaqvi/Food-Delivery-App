@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/controllers/location_controller.dart';
-import 'package:food_delivery_application/routes.dart';
-import 'package:food_delivery_application/screens/add_address_page/add_address_page.dart';
-import 'package:food_delivery_application/widgets/circuleIndicator.dart';
-import 'package:food_delivery_application/widgets/customButton.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../controllers/location_controller.dart';
+import '../../routes.dart';
+import '../../widgets/circuleIndicator.dart';
+import '../../widgets/customButton.dart';
 
 class PickAddressPage extends StatefulWidget {
   final bool fromSignup;

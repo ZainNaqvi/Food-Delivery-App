@@ -1,14 +1,12 @@
 import 'dart:convert';
-
-import 'package:food_delivery_application/controllers/add_address_user.dart';
-import 'package:food_delivery_application/data/repositories/location_repo.dart';
-import 'package:food_delivery_application/models/address_model.dart';
-import 'package:food_delivery_application/server/firebase_firestore/add_user_address.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../data/repositories/location_repo.dart';
+import '../models/address_model.dart';
+import 'add_address_user.dart';
 
 class LocationController extends GetxController implements GetxService {
   LocationRepo locationRepo;

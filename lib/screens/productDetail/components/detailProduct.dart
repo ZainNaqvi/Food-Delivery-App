@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/screens/food_home_page/components/footerCard.dart';
 
 import '../../../widgets/expandedTextWidget.dart';
+import '../../food_home_page/components/footerCard.dart';
 
 Positioned detailProduct(BuildContext context, final product) {
   return Positioned(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/controllers/popular_product_controller.dart';
-import 'package:food_delivery_application/routes.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/popular_product_controller.dart';
+import '../../../routes.dart';
 
 Positioned headerAppIcon(BuildContext context, String page) {
   return Positioned(

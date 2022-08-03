@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/controllers/popular_product_controller.dart';
 
 import 'package:get/get_state_manager/get_state_manager.dart';
+
+import '../controllers/popular_product_controller.dart';
 
 BottomBar(BuildContext context, final product) =>
     GetBuilder<PopularProductController>(builder: (value) {

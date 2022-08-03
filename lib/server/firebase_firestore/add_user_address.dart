@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_delivery_application/data/repositories/location_repo.dart';
 import 'package:food_delivery_application/models/address_model.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/add_address_user.dart';
-import '../../controllers/location_controller.dart';
 
 class AddAddress extends GetxController {
   bool isSaving = false;

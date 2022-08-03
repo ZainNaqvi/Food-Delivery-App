@@ -1,8 +1,9 @@
-import 'package:food_delivery_application/controllers/cart_product_controller.dart';
-import 'package:food_delivery_application/data/repositories/product_popular_repository.dart';
-import 'package:food_delivery_application/models/cart_product_model.dart';
-import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:get/get.dart';
+
+import '../data/repositories/product_popular_repository.dart';
+import '../models/cart_product_model.dart';
+import '../models/popular_products_model.dart';
+import 'cart_product_controller.dart';
 
 class PopularProductController extends GetxController {
   final PopularProduct popularProduct;

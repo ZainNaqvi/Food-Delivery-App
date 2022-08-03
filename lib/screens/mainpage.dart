@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:food_delivery_application/Auth/sign_in_page.dart';
 import 'package:food_delivery_application/screens/cart_history_page/cart_history.dart';
-import 'package:food_delivery_application/screens/food_home_page/food_home_page.dart';
-import 'package:food_delivery_application/screens/order_page/order_page.dart';
 import 'package:food_delivery_application/screens/profile/profile.dart';
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
-import '../controllers/getuserData.dart';
+import 'food_home_page/food_home_page.dart';
+import 'order_page/order_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/utils/app_constants.dart';
-import 'package:food_delivery_application/widgets/appicons.dart';
-import 'package:food_delivery_application/widgets/expandedTextWidget.dart';
 import 'package:get/get.dart';
 import '../../controllers/cart_product_controller.dart';
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../routes.dart';
+import '../../utils/app_constants.dart';
+import '../../widgets/appicons.dart';
+import '../../widgets/expandedTextWidget.dart';
 
 class RecommendedProductPage extends StatefulWidget {
   int itemIndex;

@@ -1,19 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/Auth/sign_in_page.dart';
-import 'package:food_delivery_application/controllers/cart_product_controller.dart';
-import 'package:food_delivery_application/controllers/location_controller.dart';
-import 'package:food_delivery_application/controllers/popular_product_controller.dart';
-import 'package:food_delivery_application/controllers/recommended_product_controller.dart';
-import 'package:food_delivery_application/routes.dart';
-import 'package:food_delivery_application/screens/no_data/no_cart_page.dart';
-import 'package:food_delivery_application/utils/app_constants.dart';
-import 'package:food_delivery_application/widgets/appicons.dart';
 import 'package:get/get.dart';
 
+import '../../Auth/sign_in_page.dart';
 import '../../controllers/add_address_user.dart';
+import '../../controllers/cart_product_controller.dart';
+import '../../controllers/location_controller.dart';
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
+import '../../routes.dart';
+import '../../utils/app_constants.dart';
+import '../../widgets/appicons.dart';
+import '../no_data/no_cart_page.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);

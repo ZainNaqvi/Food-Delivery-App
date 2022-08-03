@@ -1,7 +1,8 @@
-import 'package:food_delivery_application/data/repositories/cart_product_repo.dart';
-import 'package:food_delivery_application/models/cart_product_model.dart';
-import 'package:food_delivery_application/models/popular_products_model.dart';
 import 'package:get/get.dart';
+
+import '../data/repositories/cart_product_repo.dart';
+import '../models/cart_product_model.dart';
+import '../models/popular_products_model.dart';
 
 class CartProductController extends GetxController {
   final CartProductRepo cartProductRepo;

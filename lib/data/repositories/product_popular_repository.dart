@@ -1,6 +1,7 @@
-import 'package:food_delivery_application/data/api/api_client.dart';
-import 'package:food_delivery_application/utils/app_constants.dart';
 import 'package:get/get.dart';
+
+import '../../utils/app_constants.dart';
+import '../api/api_client.dart';
 
 class PopularProduct extends GetxService {
   final ApiClient apiClient;

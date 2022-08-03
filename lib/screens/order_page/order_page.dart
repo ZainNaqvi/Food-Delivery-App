@@ -18,7 +18,10 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
     isLoggedIn = FirebaseAuth.instance.currentUser != null ? true : false;
     if (isLoggedIn) {
       _tabController = TabController(length: 2, vsync: this);
-    }
+    } else
+      (isLoggedIn) {
+        _tabController = TabController(length: 2, vsync: this);
+      };
   }
 
   @override
@@ -30,12 +33,19 @@ class _OrderPageState extends State<OrderPage> with TickerProviderStateMixin {
           color: Colors.white,
         ),
         backgroundColor: Colors.teal,
-        title: Text(
-          "Orders",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        title: isLoggedIn
+            ? Text(
+                "Orders",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              )
+            : Text(
+                "LogIN First",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
       ),
       body: Column(
         children: [

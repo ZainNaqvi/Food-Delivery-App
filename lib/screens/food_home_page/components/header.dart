@@ -1,6 +1,6 @@
+import 'package:food_delivery_application/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_application/constants.dart';
 
 Widget header(BuildContext context) {
   return Container(
