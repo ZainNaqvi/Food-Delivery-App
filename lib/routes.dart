@@ -38,12 +38,12 @@ class AppRoutes {
     ),
     GetPage(
       name: splash,
-      page: () => SplashScreen(),
+      page: () => const SplashScreen(),
       transition: Transition.leftToRightWithFade,
     ),
     GetPage(
       name: "/",
-      page: () => MainPage(),
+      page: () => const MainPage(),
       transition: Transition.leftToRightWithFade,
     ),
     GetPage(
@@ -80,7 +80,7 @@ class AppRoutes {
       transition: Transition.leftToRightWithFade,
       name: addressPage,
       page: () {
-        return AddAddressPage();
+        return const AddAddressPage();
       },
     ),
   ];

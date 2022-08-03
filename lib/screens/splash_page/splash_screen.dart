@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen>
     animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
     Future.delayed(
       Duration(seconds: 4),
-      () => Get.offNamed(AppRoutes.initial),
+      () => Get.offNamed(AppRoutes.getInitialPage()),
     );
   }
 
