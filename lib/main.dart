@@ -16,12 +16,7 @@ void main() async {
   await dep.init();
   if (kIsWeb) {
     Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyD5WccBABJcZ_uZ-yP-IOhp6qW-1IhyYYM",
-        projectId: "delivery-boy-3b83d",
-        storageBucket: "delivery-boy-3b83d.appspot.com",
-        messagingSenderId: "866360564589",
-        appId: "1:866360564589:web:c0a774f264a52341c55864",
+
       ),
     );
   } else {
